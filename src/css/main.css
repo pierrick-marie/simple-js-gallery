@@ -5,11 +5,14 @@
  * All rights reserved.
  */
 
-body {
+body, html {
 	font-family: cursive;
 	font-size: 35px;
 	color: black;
 	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .backgroundBlack {
@@ -19,6 +22,7 @@ body {
 .backgroundImage {
 	background-image: url("../img/utils/background.jpg");
 	background-repeat: repeat;
+	background-size: cover;
 }
 
 h1 {
@@ -36,37 +40,3 @@ a:hover {
 	text-decoration: underline;
 }
 
-.menu-chapter {
-	width: 1200px;
-	min-height: 500px;
-	display: flex;
-	justify-content: space-around;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 150px;
-}
-
-.menu-entry {
-	width: 450px;
-	height: 250px;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-}
-
-.menu-entry img {
-	width: 200px;
-	height: 200px;
-	border-radius: 30px;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #444343;
-}
-
-.menu-entry:hover > a > img {
-	box-shadow: 15px 15px 15px #444343;
-}
-
-.menu-entry:hover > a {
-	text-decoration: underline;
-}

@@ -160,7 +160,7 @@ function fullScreen() {
 		$('body').removeClass('backgroundImage');
 		$('body').addClass('backgroundBlack');
 
-//		$('.thumbnails').hide();
+		$('.thumbnails').hide();
 		$('.arrow').hide();
 		toggleFullScreen = true;
 
@@ -172,7 +172,7 @@ function fullScreen() {
 		$('body').removeClass('backgroundBlack');
 		$('body').addClass('backgroundImage');
 
-//		$('.thumbnails').css('display', 'flex');
+		$('.thumbnails').css('display', 'flex');
 		$('.arrow').show();
 		toggleFullScreen = false;
 	}
