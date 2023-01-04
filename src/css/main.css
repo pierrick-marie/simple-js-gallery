@@ -6,9 +6,6 @@
  */
 
 body, html {
-	font-family: cursive;
-	font-size: 35px;
-	color: black;
 	height: 100%;
 	width: 100%;
 	margin: 0;
@@ -25,18 +22,116 @@ body, html {
 	background-size: cover;
 }
 
-h1 {
+.thumbnails {
+	display: flex;
+
+	width: 70%;
+	height: 10vh;
+
+	position: fixed;
+	bottom: 1vh;
+	left: 15%;
+
+	overflow-y: hidden;
+	overflow-x: scroll;
+
+	padding: 10px;
+}
+
+.thumbnails img {
+	width: auto;
+	height: auto;
+	max-height: 7vh;
+
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #444343;
+
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 20px;
+}
+
+.shadow {
+	box-shadow: 10px 10px 10px #444343;
+}
+
+.thumbnails img:hover {
+	box-shadow: 10px 10px 10px #444343;
+}
+
+.images {
 	text-align: center;
-	margin-top: 100px;
-	font-size: 50px;
 }
 
-a {
-	text-decoration: none;
-	color: black;
+.images img {
+	cursor: pointer;
 }
 
-a:hover {
-	text-decoration: underline;
+.gallery {
+	margin-top: 30px;
+	height: 80vh;
 }
+
+.gallery .arrow {
+	width: 100px;
+	height: 100px;
+	margin-top: 20%;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.arrow {
+	cursor: pointer;
+}
+
+.fullScreenOn {
+	position: fixed;
+  	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100vh;
+
+	box-shadow: unset;
+	border-width: 0;
+	border-radius: 0;
+}
+
+.fullScreenOff {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+
+	width: auto;
+	height: auto;
+	max-height: 84vh;
+	max-width: 75%;
+
+	border-radius: 20px;
+   	border-style: solid;
+   	border-width: 1px;
+   	border-color: #444343;
+}
+
+.cursorDefault {
+	cursor: default;
+}
+
+.cursorPointer {
+	cursor: pointer;
+}
+
+#left-arrow {
+	float: left;
+}
+
+#right-arrow {
+	float: right;
+}
+
 
