@@ -12,26 +12,26 @@ var toggleFullScreen = false;
 $(document).ready(function(){
 
     /* Count number of images to display */
-	nbImages = $('.full-image img').length;
+	nbImages = $('.images img').length;
 
     /*
     	Add thumbnails
     	This function have to be called at first !
-    	It clones and setup all images in div '.full-images'
+    	It clones and setup all images in div '.imagess'
     */
     setupThumbnails();
 
-	$('.full-image img').each(function() {
+	$('.images img').each(function() {
         /* Call fullScreen function on click to the main image */
         $(this).click(fullScreen);
     });
 
 	/* Add classes fullScreenOff and shadow to all images */
-	$('.full-image img').addClass('fullScreenOff')
+	$('.images img').addClass('fullScreenOff')
 		.addClass('shadow');
 
-	/* Add '.hide' class to all images except the first */
-    $('.full-image img:not(:first-child)').addClass('hide');
+	/* Hide all images except the first */
+    $('.images img:not(:first-child)').hide();
 
     /* Call leftArraow function on click to the left arrow */
 	$('#left-arrow').click(leftArrow);
@@ -55,7 +55,7 @@ function setupThumbnails() {
 	var id = 'thumbnail-';
    	var index = 0;
 
-	$('.full-image img').each(function() {
+	$('.images img').each(function() {
 		$('.thumbnails').append(
 			$(this).clone()
 				.attr('id', id.concat(index))
@@ -78,7 +78,7 @@ function addImageId() {
 	var id = 'image-';
 	var index = 0;
 
-	$('.full-image img').each(function() {
+	$('.images img').each(function() {
 		$(this).attr('id', id.concat(index));
 		index++;
 	});
