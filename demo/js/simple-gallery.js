@@ -157,7 +157,7 @@ function fullScreen() {
 		$(image).removeClass('fullScreenOff');
 		$(image).addClass('fullScreenOn');
 
-		$('body').removeClass('backgroundImage');
+		/*$('body').removeClass('backgroundImage');*/
 		$('body').addClass('backgroundBlack');
 
 		$('.thumbnails').hide();
@@ -170,7 +170,7 @@ function fullScreen() {
 		$(image).addClass('fullScreenOff');
 
 		$('body').removeClass('backgroundBlack');
-		$('body').addClass('backgroundImage');
+		/*$('body').addClass('backgroundImage');*/
 
 		$('.thumbnails').css('display', 'flex');
 		$('.arrow').show();
