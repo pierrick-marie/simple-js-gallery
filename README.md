@@ -10,6 +10,13 @@ I conclued I will spend less time in developing my own image gallery instead of 
 
 The gallery is programmed to run in "full screen" mode. To reduce the size of the gallery, you have to modify the CSS.
 
+## Features
+
+* Display images in full screen mode
+* Very simple and lighweight code
+* HTML5 and CSS3
+* Thumbnails generated automatically
+
 ## Clone the repository
 
 Get the source code with the following command
