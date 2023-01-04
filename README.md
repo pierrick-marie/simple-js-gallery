@@ -8,7 +8,7 @@ I had to install a lightweight image gallery on a USB key. The gallery had to ru
 
 I conclued I will spend less time in developing my own image gallery instead of reviewing existing ones.
 
-The gallery is programmed to run in "full screen" mode. To reduce the size of the gallery, you have to change the CSS.
+The gallery is programmed to run in "full screen" mode. To reduce the size of the gallery, you have to modify the CSS.
 
 ## Clone the repository
 
