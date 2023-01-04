@@ -24,7 +24,7 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 
 2. copy **\*.js** from **src/js/** to your JavaScrip folder
 
-3. read the instruction from the demonstration in **public/index.hml**
+3. read the instruction from the demonstration in **demo/index.hml**
 
 ### The instructions
 
