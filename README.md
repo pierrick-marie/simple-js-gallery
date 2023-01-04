@@ -34,4 +34,4 @@ The project is still under development.
 
 # Badges
 
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause) [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause) [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com) [![made-with-html5](https://img.shields.io/badge/Made%20with-html5-%23E34F26.svg)](https://html.spec.whatwg.org/multipage/) [![made-with-CSS3](https://img.shields.io/badge/Made%20with-css3-%231572B6.svg)](https://www.w3.org/TR/css-2022/)
