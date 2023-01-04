@@ -4,7 +4,7 @@ This is a very simple, lightweith and standalone image gallery developped in Jav
 
 # Why another image gallery in JavaScript ?
 
-I had to install a lightweight image gallery on a USB key. The gallery had to run without any internet connection. Moreover I wanted to be absolutly sure of the behaviour of the programme: displaying images and no more!
+I had to install a lightweight image gallery on a USB key. The gallery had to run without any internet connection. Moreover I wanted to be absolutly sure of the behaviour of the programme: displaying images whatever their size and no more!
 
 I conclued I will spend less time in developing my own image gallery instead of reviewing existing ones. 
 
