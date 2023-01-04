@@ -1,3 +1,10 @@
+/*
+ * BSD 3-Clause License
+ *
+ * Copyright (c) 2023, pierrick
+ * All rights reserved.
+ */
+
 body {
 	font-family: cursive;
 	font-size: 35px;
@@ -55,10 +62,6 @@ a:hover {
 	border-width: 2px;
 	border-color: #444343;
 }
-
-/* .menu-chapter a {
-	padding-bottom: 10px;
-} */
 
 .menu-entry:hover > a > img {
 	box-shadow: 15px 15px 15px #444343;

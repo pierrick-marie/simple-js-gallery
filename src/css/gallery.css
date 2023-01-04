@@ -1,3 +1,10 @@
+/*
+ * BSD 3-Clause License
+ *
+ * Copyright (c) 2023, pierrick
+ * All rights reserved.
+ */
+
 body, html {
 	height: 98%;
 }
@@ -21,13 +28,11 @@ header h1 {
 	display: flex;
 	justify-content: space-around;
 
-	width: 1400px;
+	width: 70%;
 
-	position: absolute;
-	bottom: 40px;
-	left: 50%;
-	margin-left: -700px;
-	/* margin-right: auto; */
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .thumbnails img {
@@ -67,12 +72,12 @@ header h1 {
 	cursor: pointer;
 }
 
-.main-image {
-	margin-top: -30px;
+.gallery {
+	/*margin-top: -30px;*/
 	height: 80vh;
 }
 
-.main-image .arrow {
+.gallery .arrow {
 	width: 100px;
 	height: 100px;
 	margin-top: 200px;

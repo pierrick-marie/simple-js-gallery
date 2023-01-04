@@ -1,0 +1,72 @@
+<!--
+	BSD 3-Clause License
+
+	Copyright (c) 2023, pierrick
+	All rights reserved.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+
+		<title>A simple, lightweight and standalone image gallery</title>
+
+		<meta name="author" content="Pierrick MARIE"/>
+		<meta charset="utf-8" />
+
+		<link rel='icon' type='image/x-icon' href='./img/utils/logo.jpg'/>
+
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/galery.css" />
+
+	</head>
+
+	<!-- Configure the background -->
+	<body class="backgroundImage">
+
+	<header>
+	</header>
+
+	<!-- Main place for the images -->
+	<section class="gallery">
+
+		<!-- Display previous image -->
+		<img id="left-arrow" class="arrow" src="./img/utils/left.png"/>
+
+		<!--
+			The area for the images.
+
+			=== PUT ALL THE IMAGES OF THE GALLERY IN THIS DIV ===
+		-->
+		<div class="full-image">
+			<img src="./img/gallery/0.jpg"/>
+			<img src="./img/gallery/1.jpg"/>
+			<img src="./img/gallery/2.jpg"/>
+			<img src="./img/gallery/3.jpg"/>
+			<img src="./img/gallery/4.jpg"/>
+			<img src="./img/gallery/5.jpg"/>
+			<img src="./img/gallery/6.jpg"/>
+			<img src="./img/gallery/7.jpg"/>
+			<img src="./img/gallery/8.jpg"/>
+			<img src="./img/gallery/9.jpg"/>
+		</div>
+
+		<!-- Display next image -->
+		<img id="right-arrow" class="arrow" src="./img/utils/right.png"/>
+
+	</section>
+
+	<!--
+		The thumbnails area
+
+		=== LET THIS DIV EMPTY ===
+	-->
+	<section class="thumbnails">
+	</section>
+
+	<footer>
+		<script type="text/javascript" src="./js/jquery-3.6.3.min.js"></script>
+		<script type="text/javascript" src="./js/simple-gallery.js"></script>
+	</footer>
+
+	</body>
+</html>
