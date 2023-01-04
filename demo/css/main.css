@@ -16,7 +16,7 @@ body, html {
 	background-color: black;
 }
 
-.backgroundImage {
+body {
 	background-image: url("../img/utils/background.jpg");
 	background-repeat: repeat;
 	background-size: cover;
