@@ -32,7 +32,7 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ## Demonstration
 
 After downloading the project you can find a standalone demonstration in folder **demo**.
-You just have to open **index.html** file.
+You just have to open **index.html** file with your favorite web browser.
 
 ## Installation
 
