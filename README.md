@@ -79,6 +79,10 @@ Title, thumbnails and arrow (to navigate through the images) are generated autom
 
 **5. Enjoy!**
 
+## Screenshot
+
+[![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)
+
 ## Usage
 
 ### Navigate through the images
