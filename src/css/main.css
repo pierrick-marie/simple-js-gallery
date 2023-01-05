@@ -117,16 +117,14 @@ body {
 	cursor: pointer;
 }
 
-#simple-js-gallery-left-arrow {
+#simple-js-gallery-left-arrow {	/* Position of left arrow */
 	position: absolute;
 	left: 2%;
 	top: 40vh;
 }
 
-#simple-js-gallery-right-arrow {
+#simple-js-gallery-right-arrow {	/* Position of right arrow */
 	position: absolute;
 	right: 2%;
 	top: 40vh;
 }
-
-
