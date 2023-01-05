@@ -12,10 +12,12 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 
 ## Features
 
+* Display images whatever the size of the images
 * Display images in full screen mode
-* Very simple and lighweight code
-* HTML5 and CSS3
+* Support title and subtitles
+* Very simple and lighweight HTML code
 * Thumbnails generated automatically
+* Standalone application
 
 ## Clone the repository
 

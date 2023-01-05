@@ -12,20 +12,21 @@ body, html {
 	padding: 0;
 }
 
-header h1 {
+header h1 {		/* Setup position and size of title */
 	text-align: center;
 	font-size: 50px;
 	margin: 0;
 	margin-top: 10px;
 }
 
-header p {
+header p {	/* Setup position and size of subtitle */
 	text-align: center;
 	margin-top: 10px;
 	margin-left: 10px;
 }
 
-.backgroundBlack {
+
+.backgroundBlack {	/* Background in full screen mode*/
 	background-color: black;
 	background-image: url("");
 }
@@ -36,14 +37,14 @@ body {
 	background-size: cover;
 }
 
-.thumbnails {
+.thumbnails {	/* Position, size and overflow of the thumbnails */
 	display: flex;
 	justify-content: space-around;
 
-	width: 96%;
+	width: 96%; /* Change the size of the container of thumbnails */
 	height: 10vh;
 
-	position: fixed;
+	position: fixed;	/* Change the position of the container of thumbnails */
 	bottom: 1vh;
 	left: 2%;
 
@@ -53,10 +54,11 @@ body {
 	padding: 10px;
 }
 
-.thumbnails img {
+.thumbnails img {		/* Style of thumbnails */
 	width: auto;
 	height: auto;
-	max-height: 7vh;
+
+	max-height: 7vh;	/* Size of thumbnails */
 
 	border-radius: 10px;
 	border-style: solid;
@@ -71,27 +73,24 @@ body {
 	box-shadow: 10px 10px 10px #444343;
 }
 
-.thumbnails img:hover {
+.thumbnails img:hover {		/* Add a shadow arround thumbnails */
 	box-shadow: 10px 10px 10px #444343;
 }
 
-.images {
-	text-align: center;
-}
-
-.images img {
+.images img {	/* Center the main image and change cursor to clickable */
     	width: auto;
 	height: auto;
 
 	cursor: pointer;
 }
 
-.gallery {
+.gallery {	/* The main div. It contains the current image and thumbnails */ 
 	margin-top: 30px;
 	height: 80vh;
 }
 
-.fullScreenOn {
+
+.fullScreenOn {	/* Full screen mode for main image: background in black and image size 100% */
 	position: fixed;
   	top: 50%;
 	left: 50%;
@@ -105,13 +104,13 @@ body {
 	border-radius: 0;
 }
 
-.fullScreenOff {
+.fullScreenOff {	/* Full screen off: default mode */
 	position: fixed;
   	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 
-	max-height: 75vh;
+	max-height: 75vh; /* To change the size of the main image in default mode */
 	max-width: 75%;
 
 	border-radius: 20px;
@@ -128,7 +127,7 @@ body {
 	cursor: pointer;
 }
 
-.arrow {
+.arrow {	/* The arrows to change current image (left and right) */
 	width: 100px;
 	height: 100px;
 	cursor: pointer;
