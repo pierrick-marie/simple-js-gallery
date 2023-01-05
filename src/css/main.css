@@ -6,7 +6,7 @@
  */
 
  body, html {
-	height: 100%;
+	height: 98vh;	/* Avoid little vertical scroll */
 	width: 100%;
 	margin: 0;
 	padding: 0;
@@ -48,13 +48,13 @@ body {
 	bottom: 1vh;
 	left: 2%;
 
-	overflow-y: hidden;
+	overflow-y: hidden; /* Allow horital scroll if there are more images than screen width available */
 	overflow-x: scroll;
 
 	padding: 10px;
 }
 
-.thumbnails img {		/* Style of thumbnails */
+.thumbnails img {		/* Thumbnails images, style and size */
 	width: auto;
 	height: auto;
 
@@ -81,21 +81,15 @@ body {
     	width: auto;
 	height: auto;
 
-	cursor: pointer;
-}
-
-.gallery {	/* The main div. It contains the current image and thumbnails */ 
-	margin-top: 30px;
-	height: 80vh;
-}
-
-
-.fullScreenOn {	/* Full screen mode for main image: background in black and image size 100% */
 	position: fixed;
   	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 
+	cursor: pointer;
+}
+
+.fullScreenOn {	/* Full screen mode for main image: background in black and image size 100% */
 	max-width: 100%;
 	max-height: 100vh;
 
@@ -105,11 +99,6 @@ body {
 }
 
 .fullScreenOff {	/* Full screen off: default mode */
-	position: fixed;
-  	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-
 	max-height: 75vh; /* To change the size of the main image in default mode */
 	max-width: 75%;
 

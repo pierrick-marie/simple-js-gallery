@@ -1,20 +1,19 @@
-/*
+/**
  * BSD 3-Clause License
  *
  * Copyright (c) 2023, pierrick
  * All rights reserved.
- */
+ **/
 
 var currentIndex = 0;
 var nbImages = 0;
-var toggleFullScreen = false;
+var isFullScreenMode = false;
 
 $(document).ready(function(){
 
-	/* Count number of images to display */
-	nbImages = $('.images img').length;
+	nbImages = $('.images img').length; // Count number of images to display
 
-	/*
+	/**
 	 * Add thumbnails
 	 * This function have to be called at first !
 	 * It clones and setup all images in div '.imagess'
@@ -23,47 +22,67 @@ $(document).ready(function(){
 
 	$('.images img').each(function() {
 		/* Call fullScreen function on click to the main image */
-		$(this).click(fullScreen);
+		$(this).click(togglefullScreenMode);
 	});
 
-	/* Add classes fullScreenOff and shadow to all images */
 	$('.images img').addClass('fullScreenOff')
-		.addClass('shadow');
+		.addClass('shadow'); // Add classes fullScreenOff and shadow to all images
 
-	/* Hide all images except the first */
-	$('.images img:not(:first-child)').hide();
+	$('.images img:not(:first-child)').hide(); // Hide all images except the first
 
-	/* Call leftArraow function on click to the left arrow */
-	$('#left-arrow').click(leftArrow);
+	$('#left-arrow').click(leftArrowClicked); // Call leftArraowClicked function on click to the left arrow
 
-	/* Call rightArraow function on click to the right arrow */
-	$('#right-arrow').click(rightArrow);
+	$('#right-arrow').click(rightArrowClicked); // Call rightArraowClicked function on click to the right arrow
 
-	/* Setup images id */
-	addImageId();
+	setupImages(); // Setup images id
 
-	/* Setup title id */
-	addTitleId();
+	setupTitles(); // Setup title id
+
+	setupKeyboardBinding(); // Setup keyboard binding
 });
 
-/*
+/**
+ * Add event handler on left, right and escape key to change current image
+ */
+function setupKeyboardBinding() {
+	
+	$(document).keydown(function( event ) {
+		if( event.which == 37 ) { // left key
+			leftArrowClicked(); // display left image
+		} else {
+			if( event.which == 39 ) { // right key
+				rightArrowClicked(); // display right image
+			} else {
+				if( event.which == 27 && isFullScreenMode == true ) { // escape key && in full screen mode
+					togglefullScreenMode(); // toggle to default view mode
+				} else {
+					if( event.which == 70 ) { // f key 
+						togglefullScreenMode(); // switch full screen / default view mode
+					}
+				}
+			}
+		}
+	});
+}
+
+/**
  * Add an id for each title in <header>
  * Then, hide all the title except first
  */
-function addTitleId() {
+function setupTitles() {
 
 	var id = 'title-';
 	var index = 0;
 
 	$('header div').each(function() {
-		$(this).attr('id', id.concat(index));
+		$(this).attr('id', id.concat(index)); // Add is #title-{index}
 		index++;
 	});
 
-	$('header div:not(:first-child)').hide();
+	$('header div:not(:first-child)').hide(); // hide all titles except the first
 }
 
-/*
+/**
  * Setup thumbnails of images
  * It clones all images in '.thumbnails' class.
  * Then it adds an id like #thumbnail-{number}
@@ -78,33 +97,32 @@ function setupThumbnails() {
 	$('.images img').each(function() {
 		$('.thumbnails').append(
 			$(this).clone()
-				.attr('id', id.concat(index))
-				.click({id: index}, callChangeMainImage)
+				.attr('id', id.concat(index)) // Add id #thumbnails-{index}
+				.click({id: index}, callChangeMainImage) // on click to a thumbnails, call function to display the new image
 		);
 		index++;
 	});
 
-	/* Adds '.cursorPointer' class to all images except the first */
-	$('.thumbnails img:not(:first-child)').addClass('cursorPointer');
+	$('.thumbnails img:not(:first-child)').addClass('cursorPointer'); // Add '.cursorPointer' class to all images except the first
 }
 
-/*
+/**
  * Setup id for each images
  * ids are: #images-{number}
  * {number} starts at 0 and increase to the number of images
  */
-function addImageId() {
+function setupImages() {
 
 	var id = 'image-';
 	var index = 0;
 
 	$('.images img').each(function() {
-		$(this).attr('id', id.concat(index));
+		$(this).attr('id', id.concat(index)); // Add id #image-{index}
 		index++;
 	});
 }
 
-/*
+/**
  * Get index number from event parameter and call changeMainImage.
  * This function have to be called from click on thumbnails
  */
@@ -112,37 +130,43 @@ function callChangeMainImage(event) {
 	changeMainImage(event.data.id);
 }
 
-/*
+/**
  * Display next image
  */
 function changeMainImage(newIndex) {
 
 	if( currentIndex != newIndex ) {
 
-		var newImage = '#image-'.concat(newIndex);
-		var newButton = '#thumbnail-'.concat(newIndex);
-		var currentImage = '#image-'.concat(currentIndex);
-		var currentButton = '#thumbnail-'.concat(currentIndex);
-		var newTitle = '#title-'.concat(newIndex);
-		var currentTitle = '#title-'.concat(currentIndex);
+		var newImage = '#image-'.concat(newIndex); // Compute new index of #image-
+		var newThumbnail = '#thumbnail-'.concat(newIndex); // Compute new index of #thumbnail-
+		var currentImage = '#image-'.concat(currentIndex); // Compute current index of is #image-
+		var currentThumbnail = '#thumbnail-'.concat(currentIndex); // Compute current index of is #thumbnail-
+		var newTitle = '#title-'.concat(newIndex); // Compute new index of is #title-
+		var currentTitle = '#title-'.concat(currentIndex); // // Compute current index of is #title-
 
-		$(newImage).show();
-		$(currentImage).hide();
+		currentIndex = newIndex; // update currentIndex with new value
 
-		$(currentButton).removeClass('shadow').removeClass('cursorDefault').addClass('cursorPointer');
-		$(newButton).addClass('shadow').addClass('cursorDefault').removeClass('cursorPointer');
+		$(currentImage).hide(); // hide previous image
+		$(newImage).show(); // display new image
 
-		$(currentTitle).hide();
-		$(newTitle).show();
+		if( isFullScreenMode == true ) {
+			displayFullScreenMode();
+		} else {
+			displayDefaultView();
+		}
+		
+		$(currentThumbnail).removeClass('shadow').removeClass('cursorDefault').addClass('cursorPointer'); // change skin of current thumbnail
+		$(newThumbnail).addClass('shadow').addClass('cursorDefault').removeClass('cursorPointer'); // change skin of new selected thumbnail
 
-		currentIndex = newIndex;
+		$(currentTitle).hide(); // hide previous title
+		$(newTitle).show(); // display new title
 	}
 }
 
-/*
- * Get previous image
+/**
+ * Get index of previous image
  */
-function leftArrow() {
+function leftArrowClicked() {
 	var index = currentIndex - 1;
 
 	if( index < 0 ) {
@@ -152,10 +176,10 @@ function leftArrow() {
 	changeMainImage(index);
 }
 
-/*
- * Get next image
+/**
+ * Get index of next image
  */
-function rightArrow() {
+function rightArrowClicked() {
 	var index = currentIndex + 1;
 
 	if( index >= nbImages ) {
@@ -165,35 +189,52 @@ function rightArrow() {
 	changeMainImage(index);
 }
 
-/*
- * Toggle image in full screen or back in default view
+/**
+ *  Toggle image in full screen or back in default view
  */
-function fullScreen() {
+function togglefullScreenMode() {
+
+	if( isFullScreenMode == false ) { // display image in full screen mode
+		displayFullScreenMode();	
+		isFullScreenMode = true;
+
+	} else { // display image in default mode
+		displayDefaultView();
+		isFullScreenMode = false;
+	}
+}
+
+
+/**
+ * Display image in full screen mode
+ */
+function displayFullScreenMode() {
 
 	var image = '#image-'.concat(currentIndex);
 
-	/* display image in full screen mode */
-	if( toggleFullScreen == false ) {
-		$(image).removeClass('fullScreenOff');
-		$(image).addClass('fullScreenOn');
+	$(image).removeClass('fullScreenOff'); // switch CSS of current image from default view mode to full screen mode
+	$(image).addClass('fullScreenOn');
 
-		$('body').addClass('backgroundBlack');
+	$('body').addClass('backgroundBlack'); // change background to black
 
-		$('.thumbnails').hide();
-		$('.arrow').hide();
-		$('header').hide();
-		toggleFullScreen = true;
+	$('.thumbnails').hide(); // hide thumbnails
+	$('.arrow').hide(); // hide arrows
+	$('header').hide(); // hide titles
+}
 
-	} else {
-		/* display image in default mode */
-		$(image).removeClass('fullScreenOn');
-		$(image).addClass('fullScreenOff');
+/**
+ * Display image in default view
+ */
+function displayDefaultView() {
 
-		$('body').removeClass('backgroundBlack');
+	var image = '#image-'.concat(currentIndex);
 
-		$('.thumbnails').css('display', 'flex');
-		$('.arrow').show();
-		$('header').show();
-		toggleFullScreen = false;
-	}
+	$(image).removeClass('fullScreenOn'); // switch CSS of current image from full screen view mode to full default mode
+	$(image).addClass('fullScreenOff');
+
+	$('body').removeClass('backgroundBlack'); // remove black background
+
+	$('.thumbnails').css('display', 'flex'); // display thumbnails
+	$('.arrow').show(); // display arrows
+	$('header').show(); // display titles
 }
