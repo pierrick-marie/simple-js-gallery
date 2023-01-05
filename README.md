@@ -29,6 +29,11 @@ Get the source code with the following command
 git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ```
 
+## Demonstration
+
+After downloading the project you can find a standalone demonstration in folder **demo**.
+You just have to open **index.html** file.
+
 ## Installation
 
 1. copy **main.css** from **src/css/** to your CSS folder
