@@ -15,10 +15,10 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 * Display images whatever their size
 * Spread the gallery in all screen
 * Display images in full screen mode
-* Support title of images
+* Support image's title
 * Very simple and lighweight HTML code
-* Thumbnails generated automatically
-* Standalone application
+* Thumbnails are generated automatically
+* Run without internet connection and with few dependencies
 * Support keyboard interactions
 
 ## Clone the repository
@@ -29,6 +29,31 @@ Get the source code with the following command
 git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ```
 
+## Architecture of the project
+
+```
+ -src/
+     |__-css/
+     |     |__ main.css		(CSS code of the gallery)
+     |__-js/
+           |__ simple-gallery.js	(JS code of the gallery)
+
+ -demo/
+     |__-css/
+     |     |__ main.css		(CSS code of the gallery)
+     |__-js/
+     |     |__ simple-gallery.js	(JS code of the gallery)
+     |     |__ jquery-3.6.3.min.js	(the dependency)
+     |__-img/
+     |     |__ gallery/ (all images for the gallery demonstration)
+     |     |__ utils/ 	(all side images for the demonstration)
+     |__-index.html	(the page of the gallery)
+```
+
+## Dependencies
+
+The gallerie requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6.3.min.js
+
 ## Installation
 
 1. copy **main.css** from **src/css/** to your CSS folder
@@ -37,7 +62,7 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 
 3. read the instruction from the demonstration in **demo/index.hml**
 
-### The instructions
+### Instructions
 
 **1. import main.css**
 
