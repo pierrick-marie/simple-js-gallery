@@ -34,6 +34,10 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 After downloading the project you can find a standalone demonstration in folder **demo**.
 You just have to open **index.html** file with your favorite web browser.
 
+### Screenshot
+
+[![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)
+
 ## Installation
 
 1. copy **main.css** from **src/css/** to your CSS folder
@@ -83,10 +87,6 @@ You have to place all the images of your gallery into the div **"simple-js-galle
 Title, thumbnails and arrow (to navigate through the images) are generated automatically.
 
 **5. Enjoy!**
-
-## Screenshot
-
-[![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)
 
 ## Usage
 
