@@ -5,11 +5,24 @@
  * All rights reserved.
  */
 
-body, html {
+ body, html {
 	height: 100%;
 	width: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+header h1 {
+	text-align: center;
+	font-size: 50px;
+	margin: 0;
+	margin-top: 10px;
+}
+
+header p {
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 .backgroundBlack {
@@ -25,13 +38,14 @@ body {
 
 .thumbnails {
 	display: flex;
+	justify-content: space-around;
 
-	width: 70%;
+	width: 96%;
 	height: 10vh;
 
 	position: fixed;
 	bottom: 1vh;
-	left: 15%;
+	left: 2%;
 
 	overflow-y: hidden;
 	overflow-x: scroll;
@@ -51,7 +65,6 @@ body {
 
 	margin-top: auto;
 	margin-bottom: auto;
-	margin-left: 20px;
 }
 
 .shadow {
@@ -78,18 +91,6 @@ body {
 	height: 80vh;
 }
 
-.gallery .arrow {
-	width: 100px;
-	height: 100px;
-	margin-top: 20%;
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-.arrow {
-	cursor: pointer;
-}
-
 .fullScreenOn {
 	position: fixed;
   	top: 50%;
@@ -105,11 +106,12 @@ body {
 }
 
 .fullScreenOff {
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
+	position: fixed;
+  	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 
-	max-height: 84vh;
+	max-height: 75vh;
 	max-width: 75%;
 
 	border-radius: 20px;
@@ -126,12 +128,22 @@ body {
 	cursor: pointer;
 }
 
+.arrow {
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+}
+
 #left-arrow {
-	float: left;
+	position: absolute;
+	left: 2%;
+	top: 40vh;
 }
 
 #right-arrow {
-	float: right;
+	position: absolute;
+	right: 2%;
+	top: 40vh;
 }
 
 

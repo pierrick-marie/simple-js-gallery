@@ -41,7 +41,27 @@ $(document).ready(function(){
 
 	/* Setup images id */
 	addImageId();
+
+	/* Setup title id */
+	addTitleId();
 });
+
+/*
+ * Add an id for each title in <header>
+ * Then, hide all the title except first
+ */
+function addTitleId() {
+
+	var id = 'title-';
+	var index = 0;
+
+	$('header div').each(function() {
+		$(this).attr('id', id.concat(index));
+		index++;
+	});
+
+	$('header div:not(:first-child)').hide();
+}
 
 /*
  * Setup thumbnails of images
@@ -103,8 +123,8 @@ function changeMainImage(newIndex) {
 		var newButton = '#thumbnail-'.concat(newIndex);
 		var currentImage = '#image-'.concat(currentIndex);
 		var currentButton = '#thumbnail-'.concat(currentIndex);
-		var newTitle = '.title-'.concat(newIndex);
-		var currentTitle = '.title-'.concat(currentIndex);
+		var newTitle = '#title-'.concat(newIndex);
+		var currentTitle = '#title-'.concat(currentIndex);
 
 		$(newImage).show();
 		$(currentImage).hide();
@@ -161,6 +181,7 @@ function fullScreen() {
 
 		$('.thumbnails').hide();
 		$('.arrow').hide();
+		$('header').hide();
 		toggleFullScreen = true;
 
 	} else {
@@ -172,6 +193,7 @@ function fullScreen() {
 
 		$('.thumbnails').css('display', 'flex');
 		$('.arrow').show();
+		$('header').show();
 		toggleFullScreen = false;
 	}
 }
