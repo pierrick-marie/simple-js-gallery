@@ -21,80 +21,25 @@
 
 	<body>
 
-	<!-- The titles area -->
-	<!-- !!!!! THE NUMBER OF TITLES IS EQUAL TO NUMBER OF IMAGES !!!!! -->
-	<header>
-		<div>
-			<h1>Lights</h1>
-			<p>Lights in a circle</p>
-		</div>
-		<div>
-			<h1>The city</h1>
-			<p>A city by night</p>
-		</div>
-		<div>
-			<h1>A desk</h1>
-			<p>Work hard</p>
-		</div>
-		<div>
-			<h1>Another desk</h1>
-			<p>Have a break</p>
-		</div>
-		<div>
-			<h1>Far from home</h1>
-			<p>Selfie in space</p>
-		</div>
-		<div>
-			<h1>Welding</h1>
-			<p>It smokes</p>
-		</div>
-		<div>
-			<h1>Coding</h1>
-			<p>My screen</p>
-		</div>
-		<div>
-			<h1>Another City</h1>
-			<p>By night</p>
-		</div>
-		<div>
-			<h1>Wheels</h1>
-			<p>Let's build a clock</p>
-		</div>
-		<div>
-			<h1>A clean desk</h1>
-			<p>Ready to work</p>
-		</div>
-	</header>
+	<!-- Main place for the gallery: titles, images and thumbnails -->
+	<section id="simple-js-gallery"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
 
-	<!-- Main place for the gallery images and their thumbnails -->
-	<!-- !!!!! THE NUMBER OF IMAGES IS EQUAL TO NUMBER OF TITLES !!!!! -->
-	<section>
-
-		<!-- Display previous image -->
-		<img id="left-arrow" class="arrow" src="./img/utils/left.png"/>
-
-		<!-- Display next image -->
-		<img id="right-arrow" class="arrow" src="./img/utils/right.png"/>
-
-		<!-- The area for the images. -->
-		<!-- === PUT ALL YOUR IMAGES HERE ACCORDING TO THE FOLLOWING EXAMPLES === -->
-		<div class="images">
-			<img src="./img/gallery/0.jpg"/>
-			<img src="./img/gallery/1.jpg"/>
-			<img src="./img/gallery/2.jpg"/>
-			<img src="./img/gallery/3.jpg"/>
-			<img src="./img/gallery/4.jpg"/>
-			<img src="./img/gallery/5.jpg"/>
-			<img src="./img/gallery/6.jpg"/>
-			<img src="./img/gallery/7.jpg"/>
-			<img src="./img/gallery/8.jpg"/>
-			<img src="./img/gallery/9.jpg"/>
+		<!-- The area of the images -->
+		<!-- Titles and are generated from title attribute -->
+		<!-- Thumbnails are generated automatically from images -->
+		<div id="simple-js-gallery-images"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
+			<!-- === PUT ALL YOUR IMAGES HERE ACCORDING TO THE FOLLOWING EXAMPLES === -->
+			<img src="./img/gallery/0.jpg" title="Lights in a circle"/>
+			<img src="./img/gallery/1.jpg" title="A city by night"/>
+			<img src="./img/gallery/2.jpg" title="Work hard"/>
+			<img src="./img/gallery/3.jpg" title="Have a break"/>
+			<img src="./img/gallery/4.jpg" title="Selfie in space"/>
+			<img src="./img/gallery/5.jpg" title="It smokes"/>
+			<img src="./img/gallery/6.jpg" title="My beautiful screen"/>
+			<img src="./img/gallery/7.jpg" title="Another city by night"/>
+			<img src="./img/gallery/8.jpg" title="Let's build a clock"/>
+			<img src="./img/gallery/9.jpg" title="Ready to work"/>
 		</div>
-
-		<!-- The thumbnails area -->
-		<!-- !!!!! LET THIS DIV EMPTY TO GENERATE THE THUMBNAILS !!!!! -->
-		<section class="thumbnails">
-		</section>
 
 	</section>
 
