@@ -12,12 +12,14 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 
 ## Features
 
-* Display images whatever the size of the images
+* Display images whatever their size
+* Spread the gallery in all screen
 * Display images in full screen mode
-* Support title and subtitles
+* Support title of images
 * Very simple and lighweight HTML code
 * Thumbnails generated automatically
 * Standalone application
+* Support keyboard interactions
 
 ## Clone the repository
 
@@ -53,45 +55,54 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 **3. copy the following code where you want to place the gallery**
 
 ```html
-<!-- Main place for the images -->
-<section class="gallery">
+<!-- Main place for the gallery: titles, images and thumbnails -->
+<section id="simple-js-gallery"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
 
-	<!-- Display previous image -->
-	<img id="left-arrow" class="arrow" src="./img/utils/left.png"/>
-
-	<!-- Display next image -->
-	<img id="right-arrow" class="arrow" src="./img/utils/right.png"/>
-
-	<!-- The area for the images. -->
-	<!-- === PUT ALL YOUR IMAGES HERE ACCORDING TO THE FOLLOWING EXAMPLES === -->
-	<div class="images">
-		<img src="./img/gallery/0.jpg"/>
-		<img src="./img/gallery/1.jpg"/>
-		<img src="./img/gallery/2.jpg"/>
-		<img src="./img/gallery/3.jpg"/>
-		<img src="./img/gallery/4.jpg"/>
-		<img src="./img/gallery/5.jpg"/>
-		<img src="./img/gallery/6.jpg"/>
-		<img src="./img/gallery/7.jpg"/>
-		<img src="./img/gallery/8.jpg"/>
-		<img src="./img/gallery/9.jpg"/>
+	<!-- The area of the images -->
+	<!-- Titles and are generated from title attribute -->
+	<!-- Thumbnails are generated automatically from images -->
+	<div id="simple-js-gallery-images"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
+		<!-- === PUT ALL YOUR IMAGES HERE ACCORDING TO THE FOLLOWING EXAMPLES === -->
+		<img src="./img/gallery/0.jpg" title="Lights in a circle"/>
+		<img src="./img/gallery/1.jpg" title="A city by night"/>
+		<!-- ETC. -->
 	</div>
-
-	<!-- The thumbnails area -->
-        <!-- === LET THIS DIV EMPTY === -->
-	<section class="thumbnails">
-	</section>
 
 </section>
 ```
 
 **4. Add your images**
 
-You have to place all the images of your gallery into the div **"images"**.
+You have to place all the images of your gallery into the div **"simple-js-gallery-images"**.
 
-The thumbnails will be automatically placed into the div **thumbnails**.
+Title, thumbnails and arrow (to navigate through the images) are generated automatically.
 
 **5. Enjoy!**
+
+## Usage
+
+### Navigate through the images
+
+There are three options to navigate through images:
+
+* click on the left ou right arrow
+* click on the thumbnails
+* press key left or right key
+
+### Display image in full screen mode
+
+There are two options to display image in full screen mode:
+
+* click on the image
+* press key f
+
+### Display image in default view mode
+
+There are three options to display image in default vieuw mode:
+
+* click on the image
+* press key f
+* press key escape
 
 ## Authors and acknowledgment
 
