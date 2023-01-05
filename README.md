@@ -1,12 +1,12 @@
 # Very Simple JavaScript Image Gallery
 
-This is a very simple, lightweith and standalone image gallery developped in JavaScript with JQuery.
+This is a very simple, lightweight and standalone image gallery developed in JavaScript with JQuery.
 
 # Why another image gallery in JavaScript ?
 
-I had to install a lightweight image gallery on a USB key. The gallery had to run without any internet connection. Moreover I wanted to be absolutly sure of the behaviour of the programme: displaying images whatever their size and no more!
+I had to install a lightweight image gallery on a USB key. The gallery had to run without any internet connection. Moreover I wanted to be absolutely sure of the behavior of the programme: displaying images whatever their size and no more!
 
-I conclued I will spend less time in developing my own image gallery instead of reviewing existing ones.
+I concluded I will spend less time in developing my own image gallery instead of reviewing existing ones.
 
 The gallery is programmed to run in "full screen" mode. To reduce the size of the gallery, you have to modify the CSS.
 
@@ -16,7 +16,7 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 * Spread the gallery in all screen
 * Display images in full screen mode
 * Support image's title
-* Very simple and lighweight HTML code
+* Very simple and lightweight HTML code
 * Thumbnails are generated automatically
 * Run without internet connection and with few dependencies
 * Support keyboard interactions
@@ -52,7 +52,16 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 
 ## Dependencies
 
-The gallerie requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6.3.min.js
+The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6.3.min.js
+
+## Demonstration
+
+After downloading the project you can find a standalone demonstration in folder **demo**.
+You just have to open **index.html** file with your favorite web browser.
+
+### Screenshot
+
+[![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)
 
 ## Installation
 
@@ -123,7 +132,7 @@ There are two options to display image in full screen mode:
 
 ### Display image in default view mode
 
-There are three options to display image in default vieuw mode:
+There are three options to display image in default view mode:
 
 * click on the image
 * press key f
