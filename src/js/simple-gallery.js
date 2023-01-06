@@ -6,7 +6,7 @@
  **/
 
 const GALLERY	= 'simple-js-gallery';		// the id of the main section of the gallery
-const IMAGES 	= `${GALLERY}-images`;		// the id of images section
+const IMAGES 	= `#${GALLERY} > img`;		// all the images of the gallery
 const THUMBNAILS 	= `${GALLERY}-thumbnails`;	// the id of thumbnails section
 const TITLE 	= `${GALLERY}-title`;		// the id of title section
 const ARROWS 	= `${GALLERY}-arrows`;		// the id of arrows section
@@ -17,9 +17,9 @@ var IS_FULL_SCREEN_MODE 	= false;	// save whether the image is displayed in full
 
 $(document).ready(function () {
 
-	setupGallerySections(); // Setup title, arrows and thumbnails sections
-
 	setupImages(); 		// Configure images section
+
+	setupGallerySections(); // Setup title, arrows and thumbnails sections
 
 	setupKeyboardBinding(); // Setup keyboard binding
 });
@@ -31,9 +31,9 @@ function setupGallerySections() {
 
 	setupTitlesSection(); 		// Add a section for the titles
 
-	setupArrows(); 			// Setup left and right arrow to navigate between the images 
-
 	setupThumbnailsSection();	// Add a section for the thumbnails
+	
+	setupArrows(); 			// Setup left and right arrow to navigate between the images 
 }
 
 /**
@@ -45,13 +45,13 @@ function setupGallerySections() {
  */
 function setupImages() {
 
-	NB_IMAGES = $(`#${IMAGES} img`).length;	// Count number of images to display
+	NB_IMAGES = $(IMAGES).length;	// Count number of images to display
 
-	$(`#${IMAGES} img`).addClass('fullScreenOff').addClass('shadow');	// Add classes fullScreenOff and shadow to all images
+	$(IMAGES).addClass('fullScreenOff').addClass('shadow');	// Add classes fullScreenOff and shadow to all images
 
-	$(`#${IMAGES} img:not(:first-child)`).hide();	// Hide all images except the first
+	$(IMAGES).first().css('display', 'block');	// Show first image
 
-	$(`#${IMAGES} img`).each(function () {		// For each images
+	$(IMAGES).each(function () {	// For each images
 		$(this).click(toggleFullScreenMode);	// Call toggleFullScreenMode function on click to the main image
 	});
 
@@ -63,9 +63,33 @@ function setupImages() {
  */
 function setupThumbnailsSection() {
 
-	$(`#${IMAGES}`).after(`<section id="${THUMBNAILS}"></section>`);	// Add a section for thumbnails after the images
+	$(`#${GALLERY}`).append(`<section id="${THUMBNAILS}"></section>`);	// Add a section for thumbnails after the images
 
 	setupThumbnailImages();	// Clone images in the section ${THUMBNAILS}
+}
+
+/**
+ * Setup thumbnails of images
+ * It clones all images in '.thumbnails' class.
+ * Then it adds an id like #thumbnail-{number}
+ *  where {number} starts from 0 to the number of images
+ * Finally it adds '.cursorPointer' class to all images except the first
+ */
+function setupThumbnailImages() {
+
+	const _thumbnailId = `${GALLERY}-thumbnail-`;	// Id of thumbnail
+	var index = 0;
+
+	$(IMAGES).each(function () {
+		$(`#${THUMBNAILS}`).append(
+			$(this).clone()
+				.attr('id', _thumbnailId.concat(index))		// Add id #thumbnails-{index}
+				.click({ id: index }, callChangeMainImage) 	// on click to a thumbnails, call function to display the new image
+		);
+		index++;
+	});
+
+	$(`#${THUMBNAILS}`).slice(1).addClass('cursorPointer'); // Add '.cursorPointer' class to all images except the first
 }
 
 /**
@@ -74,7 +98,7 @@ function setupThumbnailsSection() {
  */
 function setupTitlesSection() {
 
-	const _titleValue = $(`#${IMAGES} img:not(:first-child)`).attr('title');	// Get title of the first image
+	const _titleValue = $(IMAGES).first().attr('title');	// Get title of the first image
 
 	$(`#${GALLERY}`).prepend(`<h1 id="${TITLE}">${_titleValue}</h1>`);	// Insert h1 section
 }
@@ -89,12 +113,14 @@ function setupArrows() {
 	const _rightArrow = `${GALLERY}-right-arrow`;	// Id of right arrow
 
 	$(`#${TITLE}`).after(`
-		<img id="${_leftArrow}" class="${ARROWS}" src="./img/utils/left.png"/>
-		<img id="${_rightArrow}" class="${ARROWS}" src="./img/utils/right.png"/>
+		<nav>
+			<img id="${_leftArrow}" class="${ARROWS}" src="./img/utils/left.png"/>
+			<img id="${_rightArrow}" class="${ARROWS}" src="./img/utils/right.png"/>
+		</nav>
 	`);	// Insert the arrows
 
-	$(`#${_leftArrow}`).click(leftArrowClicked);	// Call leftArrowClicked function on click to the left arrow
-	$(`#${_rightArrow}`).click(rightArrowClicked);	// Call rightArrowClicked function on click to the right arrow
+	$(`#${_leftArrow}`).click(leftArrowClicked).css('display', 'block');	// Call leftArrowClicked function on click to the left arrow
+	$(`#${_rightArrow}`).click(rightArrowClicked).css('display', 'block');	// Call rightArrowClicked function on click to the right arrow
 }
 
 /**
@@ -122,30 +148,6 @@ function setupKeyboardBinding() {
 }
 
 /**
- * Setup thumbnails of images
- * It clones all images in '.thumbnails' class.
- * Then it adds an id like #thumbnail-{number}
- *  where {number} starts from 0 to the number of images
- * Finally it adds '.cursorPointer' class to all images except the first
- */
-function setupThumbnailImages() {
-
-	const _thumbnailId = `${GALLERY}-thumbnail-`;	// Id of thumbnail
-	var index = 0;
-
-	$(`#${IMAGES} img`).each(function () {
-		$(`#${THUMBNAILS}`).append(
-			$(this).clone()
-				.attr('id', _thumbnailId.concat(index))		// Add id #thumbnails-{index}
-				.click({ id: index }, callChangeMainImage) 	// on click to a thumbnails, call function to display the new image
-		);
-		index++;
-	});
-
-	$(`#${THUMBNAILS} img:not(:first-child)`).addClass('cursorPointer'); // Add '.cursorPointer' class to all images except the first
-}
-
-/**
  * Setup id for each images
  * ids are: #images-{number}
  * {number} starts at 0 and increase to the number of images
@@ -156,7 +158,7 @@ function setupImagesId() {
 
 	var index = 0;
 
-	$(`#${IMAGES} img`).each(function () {
+	$(IMAGES).each(function () {
 		$(this).attr('id', `${_imageId}-${index}`); // Add id #image-{index}
 		index++;
 	});
