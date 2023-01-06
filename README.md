@@ -33,20 +33,20 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ```
  -src/
      |__-css/
-     |     |__ simple-gallery.css	(CSS code of the gallery)
+     |     |__ simple-gallery.css   (CSS code of the gallery)
      |__-js/
-           |__ simple-gallery.js	(JS code of the gallery)
+           |__ simple-gallery.js    (JS code of the gallery)
 
  -demo/
      |__-css/
-     |     |__ simple-gallery.css	(CSS code of the gallery)
+     |     |__ simple-gallery.css   (CSS code of the gallery)
      |__-js/
-     |     |__ simple-gallery.js	(JS code of the gallery)
-     |     |__ jquery-3.6.3.min.js	(the dependency)
+     |     |__ simple-gallery.js    (JS code of the gallery)
+     |     |__ jquery-3.6.3.min.js  (the dependency)
      |__-img/
      |     |__ gallery/ (all images for the gallery demonstration)
-     |     |__ utils/ 	(all side images for the demonstration)
-     |__-index.html	(the page of the gallery)
+     |     |__ utils/   (all side images for the demonstration)
+     |__-index.html     (the page of the gallery)
 ```
 
 ## Dependencies
@@ -64,14 +64,14 @@ You just have to open **index.html** file with your favorite web browser.
 
 ## Installation
 
-1. Copy **main.css** from **src/css/** to your CSS folder
+1. Copy **simple-gallery.css** from **src/css/** to your CSS folder
 
 2. Copy **\*.js** from **src/js/** to your JavaScrip folder
 
-3. Import **main.css** in *head* section
+3. Import **simple-gallery.css** in *head* section
 
 ```html
-<link rel="stylesheet" href="./css/main.css" />
+<link rel="stylesheet" href="./css/simple-gallery.css" />
 ```
 4. Import both **JavaScript files** at the end of your html file
 
