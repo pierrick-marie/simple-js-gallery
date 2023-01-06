@@ -17,9 +17,9 @@ var IS_FULL_SCREEN_MODE 	= false;	// save whether the image is displayed in full
 
 $(document).ready(function () {
 
-	setupImages(); 		// Configure images section
-
 	setupGallerySections(); // Setup title, arrows and thumbnails sections
+
+	setupImages(); 		// Configure images section
 
 	setupKeyboardBinding(); // Setup keyboard binding
 });
@@ -29,17 +29,20 @@ $(document).ready(function () {
  */
 function setupGallerySections() {
 
+	$(`#${GALLERY}`).addClass('sizeOfGallery');	// Defines the size of the gallery
+	$(`#${GALLERY}`).addClass('positionOfGallery');	// Defines the position of the gallery
+
 	setupTitlesSection(); 		// Add a section for the titles
 
 	setupThumbnailsSection();	// Add a section for the thumbnails
-	
+
 	setupArrows(); 			// Setup left and right arrow to navigate between the images 
 }
 
 /**
  * Setup all images in the gallery:
  * 	- init global var NB_IMAGES
- * 	- add class fullScreenOff and shadow
+ * 	- add class defaultView
  * 	- hide all images except the first
  * 	- add id to all images
  */
@@ -47,9 +50,8 @@ function setupImages() {
 
 	NB_IMAGES = $(IMAGES).length;	// Count number of images to display
 
-	$(IMAGES).addClass('fullScreenOff').addClass('shadow');	// Add classes fullScreenOff and shadow to all images
-
-	$(IMAGES).first().css('display', 'block');	// Show first image
+	$(IMAGES).first().addClass('defaultView');	// Add classes defaultView to the first image
+	$(IMAGES).first().show();	// Show first image
 
 	$(IMAGES).each(function () {	// For each images
 		$(this).click(toggleFullScreenMode);	// Call toggleFullScreenMode function on click to the main image
@@ -89,7 +91,7 @@ function setupThumbnailImages() {
 		index++;
 	});
 
-	$(`#${THUMBNAILS}`).slice(1).addClass('cursorPointer'); // Add '.cursorPointer' class to all images except the first
+	// $(`#${THUMBNAILS} img`).first().css('cursor', 'auto'); // Remove "cursor: pointer" property for the first image
 }
 
 /**
@@ -119,8 +121,10 @@ function setupArrows() {
 		</nav>
 	`);	// Insert the arrows
 
+	/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 	$(`#${_leftArrow}`).click(leftArrowClicked).css('display', 'block');	// Call leftArrowClicked function on click to the left arrow
 	$(`#${_rightArrow}`).click(rightArrowClicked).css('display', 'block');	// Call rightArrowClicked function on click to the right arrow
+	/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 }
 
 /**
@@ -195,7 +199,7 @@ function changeMainImage(newIndex) {
 
 
 		if (IS_FULL_SCREEN_MODE == true) {
-			displayFullScreenMode();
+			displayFullScreenView();
 		} else {
 			displayDefaultView();
 		}
@@ -241,31 +245,35 @@ function rightArrowClicked() {
 function toggleFullScreenMode() {
 
 	if (IS_FULL_SCREEN_MODE == false) { // display image in full screen mode
-		displayFullScreenMode();
+		displayFullScreenView();
+
+		$('body').addClass('backgroundBlack'); // change background to black
+
 		IS_FULL_SCREEN_MODE = true;
 
 	} else { // display image in default mode
 		displayDefaultView();
+
+		$('body').removeClass('backgroundBlack'); 	// remove black background
+
 		IS_FULL_SCREEN_MODE = false;
 	}
+
+	$(`#${THUMBNAILS}`).toggle();	// hide thumbnails
+	$(`.${ARROWS}`).toggle(); 	// hide arrows
+	$(`#${TITLE}`).toggle(); 	// hide titles
 }
 
 
 /**
  * Display image in full screen mode
  */
-function displayFullScreenMode() {
+function displayFullScreenView() {
 
 	const _currentImageId = `#${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
 
-	$(_currentImageId).removeClass('fullScreenOff'); // switch CSS of current image from default view mode to full screen mode
-	$(_currentImageId).addClass('fullScreenOn');
-
-	$('body').addClass('backgroundBlack'); // change background to black
-
-	$(`#${THUMBNAILS}`).hide();	// hide thumbnails
-	$(`.${ARROWS}`).hide(); 	// hide arrows
-	$(`#${TITLE}`).hide(); 		// hide titles
+	$(_currentImageId).removeClass('defaultView'); // switch CSS of current image from default view to full screen view
+	$(_currentImageId).addClass('fullScreenView');
 }
 
 /**
@@ -275,12 +283,6 @@ function displayDefaultView() {
 
 	const _currentImageId = `#${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
 
-	$(_currentImageId).removeClass('fullScreenOn'); // switch CSS of current image from full screen view mode to full default mode
-	$(_currentImageId).addClass('fullScreenOff');
-
-	$('body').removeClass('backgroundBlack'); 	// remove black background
-
-	$(`#${THUMBNAILS}`).css('display', 'flex');	// display thumbnails
-	$(`.${ARROWS}`).show();	// display arrows
-	$(`#${TITLE}`).show();	// display titles
+	$(_currentImageId).removeClass('fullScreenView'); // switch CSS of current image from full screen view to full default view
+	$(_currentImageId).addClass('defaultView');
 }
