@@ -1,4 +1,4 @@
-# Very Simple JavaScript Image Gallery
+# Simple JavaScript Image Gallery
 
 This is a very simple, lightweight and standalone image gallery developed in JavaScript with JQuery.
 
@@ -59,27 +59,34 @@ The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6
 
 ### Screenshot
 
-[![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/demo/screenshot.jpg)
+[![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)
 
 ## Installation
 
-1. Copy **simple-gallery.css** from **src/css/** to your CSS folder
+### 1. Setup CSS
 
-2. Copy **\*.js** from **src/js/** to your JavaScrip folder
+Copy **simple-gallery.css** from **src/css/** to your CSS folder
 
-3. Import **simple-gallery.css** in *head* section
+Import **simple-gallery.css** in your *head* section
 
 ```html
 <link rel="stylesheet" href="./css/simple-gallery.css" />
 ```
-4. Import both **JavaScript files** at the end of your html file
+
+### 2. Setup JavaScript
+
+Copy **\*.js** from **src/js/** to your JavaScrip folder
+
+Import both **JavaScript files** at the end of your html file
 
 ```html
 <script type="text/javascript" src="./js/jquery-3.6.3.min.js"></script>
 <script type="text/javascript" src="./js/simple-gallery.js"></script>
 ```
 
-5. Copy the following code where you want to place the gallery
+### 3. Setup the images of the gallery
+
+Copy the following code where you want to place the gallery
 
 ```html
 <!-- Main place for the gallery: titles, images and thumbnails -->
@@ -95,9 +102,11 @@ The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6
 </section>
 ```
 
-6. Add your images in section *#simple-js-gallery* according to the examples
+Add your images in section *#simple-js-gallery* according to the examples
 
-7. Position and size your gallery with CSS: open **simple-gallery.css** and modify the following properties
+### 4. Optional: Customize the gallery
+
+To change position and size of your gallery with CSS open **simple-gallery.css** and modify the following properties
 
 ```css
 /**
@@ -121,8 +130,6 @@ The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6
 }
 ```
 
-8. Change the design of the gallery
-
 You can change the design of the gallery with the following CSS class
 
 ```css
@@ -137,7 +144,7 @@ You can change the design of the gallery with the following CSS class
 }
 ```
 
-To change CSS of the other elements use the following id and class
+To change the other elements, use the following id and class
 
 * main image in default view -> *.defaultView*
 * main image in full screen view -> *.fullScreenView*
@@ -147,7 +154,7 @@ To change CSS of the other elements use the following id and class
 * left arrow -> *#simple-js-gallery-left-arrow*
 * right arrow -> *#simple-js-gallery-right-arrow*
 
-9. **Enjoy your gallery!**
+### 5. Enjoy your gallery!
 
 ## Usage
 
