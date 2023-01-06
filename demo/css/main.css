@@ -10,8 +10,8 @@
  */
  .positionOfGallery {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 20%;
+	left: 20%;
 }
 
 /**
@@ -21,8 +21,8 @@
  * Sub elements of the gallery resize automatically.
  */
 .sizeOfGallery {
-	width: 98%;
-	height: 95%;
+	width: 58%;
+	height: 55%;
 }
 
 /**
@@ -61,7 +61,7 @@ body {
 /**
  * title
  */
-#simple-js-gallery-title {	/* Setup position and size of title */
+#simple-js-gallery-title {
 	position: relative;
 
 	font-size: 1.5em;
@@ -71,7 +71,7 @@ body {
 /** 
  * thumbnails
  */
-#simple-js-gallery-thumbnails {	/* Position, size and overflow of the thumbnails */
+#simple-js-gallery-thumbnails {
 	position: sticky;
 	top: 100vh;
 	margin-left: auto;
@@ -105,8 +105,6 @@ body {
 
 	margin-top: auto;
 	margin-bottom: auto;
-
-	cursor: pointer;
 }
 
 /** 
@@ -119,7 +117,7 @@ body {
 /** 
  * images img
  */
-#simple-js-gallery > img {	/* Center the main image and change cursor to clickable */
+#simple-js-gallery > img {
 	display: none;
 
 	width: auto;
@@ -130,7 +128,7 @@ body {
  * Display current image in full screen 
  * ==> remove .defaultView before !
  */
-.fullScreenView {	/* background in black and image size 100% */
+.fullScreenView {
 	position: fixed;
 	top: 0;
 	left: 50%;
@@ -186,14 +184,14 @@ body {
 /**
  * left arrow
  */
-#simple-js-gallery-left-arrow {	/* Position of left arrow */
+#simple-js-gallery-left-arrow {	
 	float: left;
 }
 
 /**
  * right arrow
  */
-#simple-js-gallery-right-arrow {	/* Position of right arrow */
+#simple-js-gallery-right-arrow {	
 	float: right;
 }
 
@@ -206,7 +204,7 @@ body {
 }
 
 .shadow {
-	box-shadow: 10px 10px 10px #444343;
+	box-shadow: 5px 5px 5px #444343;
 }
 
 .backgroundBlack {	/* Background in black for full screen view */
