@@ -26,6 +26,16 @@
 }
 
 /**
+ * === Decorations of the gallery ===
+ * 
+ * Change them according to the design of your web site
+ */
+.decorationGallery {
+	background-color: #0000001f;
+	border-radius: 20px;
+}
+
+/**
  * === BODY === 
  */
 
@@ -53,9 +63,6 @@ body {
 	padding: 1%;
 
 	text-align: center;
-
-	background-color: #0000001f;
-	border-radius: 20px;
 }
 
 /**

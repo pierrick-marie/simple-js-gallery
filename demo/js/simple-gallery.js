@@ -29,8 +29,9 @@ $(document).ready(function () {
  */
 function setupGallerySections() {
 
-	$(`#${GALLERY}`).addClass('sizeOfGallery');	// Defines the size of the gallery
-	$(`#${GALLERY}`).addClass('positionOfGallery');	// Defines the position of the gallery
+	$(`#${GALLERY}`).addClass('sizeOfGallery')	// Defines the size of the gallery
+		.addClass('positionOfGallery')	// Defines the position of the gallery
+		.addClass('decorationGallery');	// Decorates the gallery
 
 	setupTitlesSection(); 
 

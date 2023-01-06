@@ -13,10 +13,9 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 ## Features
 
 * Display images whatever their size
-* Spread the gallery in all screen
-* Display images in full screen mode
+* Possible to display images in full screen mode
 * Support image's title
-* Very simple and lightweight HTML code
+* Very simple and lightweight HTML and CSS code
 * Thumbnails are generated automatically
 * Run without internet connection and with few dependencies
 * Support keyboard interactions
@@ -34,13 +33,13 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ```
  -src/
      |__-css/
-     |     |__ main.css		(CSS code of the gallery)
+     |     |__ simple-gallery.css	(CSS code of the gallery)
      |__-js/
            |__ simple-gallery.js	(JS code of the gallery)
 
  -demo/
      |__-css/
-     |     |__ main.css		(CSS code of the gallery)
+     |     |__ simple-gallery.css	(CSS code of the gallery)
      |__-js/
      |     |__ simple-gallery.js	(JS code of the gallery)
      |     |__ jquery-3.6.3.min.js	(the dependency)
@@ -65,53 +64,91 @@ You just have to open **index.html** file with your favorite web browser.
 
 ## Installation
 
-1. copy **main.css** from **src/css/** to your CSS folder
+1. Copy **main.css** from **src/css/** to your CSS folder
 
-2. copy **\*.js** from **src/js/** to your JavaScrip folder
+2. Copy **\*.js** from **src/js/** to your JavaScrip folder
 
-3. read the instruction from the demonstration in **demo/index.hml**
-
-### Instructions
-
-**1. import main.css**
+3. Import **main.css** in *head* section
 
 ```html
 <link rel="stylesheet" href="./css/main.css" />
 ```
-
-**2. import both JavaScript files**
+4. Import both **JavaScript files** at the end of your html file
 
 ```html
 <script type="text/javascript" src="./js/jquery-3.6.3.min.js"></script>
 <script type="text/javascript" src="./js/simple-gallery.js"></script>
 ```
 
-**3. copy the following code where you want to place the gallery**
+5. Copy the following code where you want to place the gallery
 
 ```html
 <!-- Main place for the gallery: titles, images and thumbnails -->
 <section id="simple-js-gallery"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
 
-	<!-- The area of the images -->
-	<!-- Titles and are generated from title attribute -->
+    <!-- Titles and are generated from title attribute -->
 	<!-- Thumbnails are generated automatically from images -->
-	<div id="simple-js-gallery-images"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
-		<!-- === PUT ALL YOUR IMAGES HERE ACCORDING TO THE FOLLOWING EXAMPLES === -->
-		<img src="./img/gallery/0.jpg" title="Lights in a circle"/>
-		<img src="./img/gallery/1.jpg" title="A city by night"/>
-		<!-- ETC. -->
-	</div>
+	<!-- === PUT ALL YOUR IMAGES HERE ACCORDING TO THE FOLLOWING EXAMPLES === -->
+	<img src="./img/gallery/0.jpg" title="Lights in a circle"/>
+	<img src="./img/gallery/1.jpg" title="A city by night"/>
+	<!-- ETC. -->
 
 </section>
 ```
 
-**4. Add your images**
+6. Add your images in section *#simple-js-gallery* according to the examples
 
-You have to place all the images of your gallery into the div **"simple-js-gallery-images"**.
+7. Position and size your gallery with CSS: open **simple-gallery.css** and modify the following properties
 
-Title, thumbnails and arrow (to navigate through the images) are generated automatically.
+```css
+/**
+ * === POSITION OF THE GALLERY ===
+ */
+ .positionOfGallery {
+	position: absolute;
+	top: 20%;
+	left: 20%;
+}
 
-**5. Enjoy!**
+/**
+ * === SIZE OF THE GALLERY ===
+ * 
+ * For full screen mode ==> width: 98%; height: 95%;
+ * Sub elements of the gallery resize automatically.
+ */
+.sizeOfGallery {
+	width: 58%;
+	height: 55%;
+}
+```
+
+8. Change the design of the gallery
+
+You can change the design of the gallery with the following CSS class
+
+```css
+ /**
+  * === Decorations of the gallery ===
+  * 
+  * Change them according to the design of your web site
+  */
+.decorationGallery {
+	background-color: #0000001f;
+	border-radius: 20px;
+}
+```
+
+To change CSS of the other elements use the following id and class
+
+* main image in default view -> *.defaultView*
+* main image in full screen view -> *.fullScreenView*
+* thumbnails area -> *#simple-js-gallery-thumbnails*
+* thumbnails images -> *#simple-js-gallery-thumbnails img*
+* arrows -> *.simple-js-gallery-arrows*
+* left arrow -> *#simple-js-gallery-left-arrow*
+* right arrow -> *#simple-js-gallery-right-arrow*
+
+9. **Enjoy your simple gallery!**
 
 ## Usage
 

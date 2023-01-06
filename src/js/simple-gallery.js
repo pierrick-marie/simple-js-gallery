@@ -5,23 +5,23 @@
  * All rights reserved.
  **/
 
-const GALLERY	= 'simple-js-gallery';		// the id of the main section of the gallery
-const IMAGES 	= `#${GALLERY} > img`;		// all the images of the gallery
-const THUMBNAILS 	= `${GALLERY}-thumbnails`;	// the id of thumbnails section
-const TITLE 	= `${GALLERY}-title`;		// the id of title section
-const ARROWS 	= `${GALLERY}-arrows`;		// the id of arrows section
+const GALLERY = 'simple-js-gallery';		// the id of the main section of the gallery
+const IMAGES = `#${GALLERY} > img`;		// all the images of the gallery
+const THUMBNAILS = `${GALLERY}-thumbnails`;	// the id of thumbnails section
+const TITLE = `${GALLERY}-title`;		// the id of title section
+const ARROWS = `${GALLERY}-arrows`;		// the id of arrows section
 
-var CURRENT_IMAGE_NUMBER 	= 0;		// the number of the current image displayed on the screen
-var NB_IMAGES 			= 0;		// the total number of images
-var IS_FULL_SCREEN_MODE 	= false;	// save whether the image is displayed in full screen or not
+var CURRENT_IMAGE_NUMBER = 0;		// the number of the current image displayed on the screen
+var NB_IMAGES = 0;		// the total number of images
+var IS_FULL_SCREEN_MODE = false;	// save whether the image is displayed in full screen or not
 
 $(document).ready(function () {
 
-	setupImages(); 		// Configure images section
+	setupGallerySections(); 
 
-	setupGallerySections(); // Setup title, arrows and thumbnails sections
+	setupImages(); 	
 
-	setupKeyboardBinding(); // Setup keyboard binding
+	setupKeyboardBinding();
 });
 
 /**
@@ -29,17 +29,20 @@ $(document).ready(function () {
  */
 function setupGallerySections() {
 
-	setupTitlesSection(); 		// Add a section for the titles
+	$(`#${GALLERY}`).addClass('sizeOfGallery');	// Defines the size of the gallery
+	$(`#${GALLERY}`).addClass('positionOfGallery');	// Defines the position of the gallery
 
-	setupThumbnailsSection();	// Add a section for the thumbnails
-	
-	setupArrows(); 			// Setup left and right arrow to navigate between the images 
+	setupTitlesSection(); 
+
+	setupThumbnailsSection();
+
+	setupArrows(); 
 }
 
 /**
  * Setup all images in the gallery:
  * 	- init global var NB_IMAGES
- * 	- add class fullScreenOff and shadow
+ * 	- add class defaultView
  * 	- hide all images except the first
  * 	- add id to all images
  */
@@ -47,15 +50,14 @@ function setupImages() {
 
 	NB_IMAGES = $(IMAGES).length;	// Count number of images to display
 
-	$(IMAGES).addClass('fullScreenOff').addClass('shadow');	// Add classes fullScreenOff and shadow to all images
-
-	$(IMAGES).first().css('display', 'block');	// Show first image
+	$(IMAGES).first().addClass('defaultView');	// Add classes defaultView to the first image
+	$(IMAGES).first().show();	// Show first image
 
 	$(IMAGES).each(function () {	// For each images
-		$(this).click(toggleFullScreenMode);	// Call toggleFullScreenMode function on click to the main image
+		$(this).click(toggleFullScreenView);	// Call toggleFullScreenView function on click to the main image
 	});
 
-	setupImagesId(); // Setup images id
+	setupImagesId(); 
 }
 
 /**
@@ -65,7 +67,7 @@ function setupThumbnailsSection() {
 
 	$(`#${GALLERY}`).append(`<section id="${THUMBNAILS}"></section>`);	// Add a section for thumbnails after the images
 
-	setupThumbnailImages();	// Clone images in the section ${THUMBNAILS}
+	setupThumbnailImages();
 }
 
 /**
@@ -84,12 +86,13 @@ function setupThumbnailImages() {
 		$(`#${THUMBNAILS}`).append(
 			$(this).clone()
 				.attr('id', _thumbnailId.concat(index))		// Add id #thumbnails-{index}
-				.click({ id: index }, callChangeMainImage) 	// on click to a thumbnails, call function to display the new image
+				.click({ id: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
 		);
 		index++;
 	});
 
-	$(`#${THUMBNAILS}`).slice(1).addClass('cursorPointer'); // Add '.cursorPointer' class to all images except the first
+	$(`#${THUMBNAILS} img`).slice(1).addClass('cursorPointer'); // Add cursor clickable to all thumbnails except first
+	$(`#${THUMBNAILS} img`).first().addClass('shadow'); // Add shadow on first thumbnail
 }
 
 /**
@@ -108,19 +111,13 @@ function setupTitlesSection() {
  * ! Be sure the section for titles is correctly enabled before !
  */
 function setupArrows() {
-	
-	const _leftArrow = `${GALLERY}-left-arrow`;	// Id of left arrow
-	const _rightArrow = `${GALLERY}-right-arrow`;	// Id of right arrow
 
 	$(`#${TITLE}`).after(`
 		<nav>
-			<img id="${_leftArrow}" class="${ARROWS}" src="./img/utils/left.png"/>
-			<img id="${_rightArrow}" class="${ARROWS}" src="./img/utils/right.png"/>
+			<img id="${GALLERY}-left-arrow" class="${ARROWS}" src="./img/utils/left.png" onclick="leftArrowClicked()"/>
+			<img id="${GALLERY}-right-arrow" class="${ARROWS}" src="./img/utils/right.png" onclick="rightArrowClicked()"/>
 		</nav>
 	`);	// Insert the arrows
-
-	$(`#${_leftArrow}`).click(leftArrowClicked).css('display', 'block');	// Call leftArrowClicked function on click to the left arrow
-	$(`#${_rightArrow}`).click(rightArrowClicked).css('display', 'block');	// Call rightArrowClicked function on click to the right arrow
 }
 
 /**
@@ -129,17 +126,17 @@ function setupArrows() {
 function setupKeyboardBinding() {
 
 	$(document).keydown(function (event) {
-		if (event.which == 37) { 	// left key
-			leftArrowClicked();	// display left image
+		if (event.which == 37) { 	// left key pressed
+			leftArrowClicked();	
 		} else {
-			if (event.which == 39) { 	// right key
-				rightArrowClicked();	// display right image
+			if (event.which == 39) { 	// right key pressed
+				rightArrowClicked();	
 			} else {
-				if (event.which == 27 && IS_FULL_SCREEN_MODE == true) { // escape key && in full screen mode
-					toggleFullScreenMode(); // toggle to default view mode
+				if (event.which == 27 && IS_FULL_SCREEN_MODE == true) { // escape key pressed && in full screen view
+					toggleFullScreenView(); 
 				} else {
-					if (event.which == 70) { 	// f key 
-						toggleFullScreenMode();	// switch full screen / default view mode
+					if (event.which == 70) { 	// f key pressed
+						toggleFullScreenView();
 					}
 				}
 			}
@@ -168,14 +165,14 @@ function setupImagesId() {
  * Get index number from event parameter and call changeMainImage.
  * This function have to be called from click on thumbnails
  */
-function callChangeMainImage(event) {
-	changeMainImage(event.data.id);
+function callChangeCurrentImage(event) {
+	changeCurrentImage(event.data.id);
 }
 
 /**
  * Display next image
  */
-function changeMainImage(newIndex) {
+function changeCurrentImage(newIndex) {
 
 	if (CURRENT_IMAGE_NUMBER != newIndex) {
 
@@ -195,7 +192,7 @@ function changeMainImage(newIndex) {
 
 
 		if (IS_FULL_SCREEN_MODE == true) {
-			displayFullScreenMode();
+			displayFullScreenView();
 		} else {
 			displayDefaultView();
 		}
@@ -218,7 +215,7 @@ function leftArrowClicked() {
 		index = NB_IMAGES - 1;
 	}
 
-	changeMainImage(index);
+	changeCurrentImage(index);
 }
 
 /**
@@ -232,40 +229,44 @@ function rightArrowClicked() {
 		index = 0;
 	}
 
-	changeMainImage(index);
+	changeCurrentImage(index);
 }
 
 /**
  *  Toggle image in full screen or back in default view
  */
-function toggleFullScreenMode() {
+function toggleFullScreenView() {
 
 	if (IS_FULL_SCREEN_MODE == false) { // display image in full screen mode
-		displayFullScreenMode();
+		displayFullScreenView();
+
+		$('body').addClass('backgroundBlack'); // change background to black
+
 		IS_FULL_SCREEN_MODE = true;
 
 	} else { // display image in default mode
 		displayDefaultView();
+
+		$('body').removeClass('backgroundBlack'); // remove black background
+
 		IS_FULL_SCREEN_MODE = false;
 	}
+
+	$(`#${THUMBNAILS}`).toggle();	// hide thumbnails
+	$(`.${ARROWS}`).toggle(); 	// hide arrows
+	$(`#${TITLE}`).toggle(); 	// hide titles
 }
 
 
 /**
  * Display image in full screen mode
  */
-function displayFullScreenMode() {
+function displayFullScreenView() {
 
 	const _currentImageId = `#${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
 
-	$(_currentImageId).removeClass('fullScreenOff'); // switch CSS of current image from default view mode to full screen mode
-	$(_currentImageId).addClass('fullScreenOn');
-
-	$('body').addClass('backgroundBlack'); // change background to black
-
-	$(`#${THUMBNAILS}`).hide();	// hide thumbnails
-	$(`.${ARROWS}`).hide(); 	// hide arrows
-	$(`#${TITLE}`).hide(); 		// hide titles
+	$(_currentImageId).removeClass('defaultView'); // switch CSS of current image from default view to full screen view
+	$(_currentImageId).addClass('fullScreenView');
 }
 
 /**
@@ -275,12 +276,6 @@ function displayDefaultView() {
 
 	const _currentImageId = `#${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
 
-	$(_currentImageId).removeClass('fullScreenOn'); // switch CSS of current image from full screen view mode to full default mode
-	$(_currentImageId).addClass('fullScreenOff');
-
-	$('body').removeClass('backgroundBlack'); 	// remove black background
-
-	$(`#${THUMBNAILS}`).css('display', 'flex');	// display thumbnails
-	$(`.${ARROWS}`).show();	// display arrows
-	$(`#${TITLE}`).show();	// display titles
+	$(_currentImageId).removeClass('fullScreenView'); // switch CSS of current image from full screen view to full default view
+	$(_currentImageId).addClass('defaultView');
 }
