@@ -140,13 +140,13 @@ You can change the design of the gallery with the following CSS class
 
 To change CSS of the other elements use the following id and class
 
-* main image in default view -> *.defaultView*
+* main image in default view     -> *.defaultView*
 * main image in full screen view -> *.fullScreenView*
-* thumbnails area -> *#simple-js-gallery-thumbnails*
-* thumbnails images -> *#simple-js-gallery-thumbnails img*
-* arrows -> *.simple-js-gallery-arrows*
-* left arrow -> *#simple-js-gallery-left-arrow*
-* right arrow -> *#simple-js-gallery-right-arrow*
+* thumbnails area                -> *#simple-js-gallery-thumbnails*
+* thumbnails images              -> *#simple-js-gallery-thumbnails img*
+* arrows                         -> *.simple-js-gallery-arrows*
+* left arrow                     -> *#simple-js-gallery-left-arrow*
+* right arrow                    -> *#simple-js-gallery-right-arrow*
 
 9. **Enjoy your simple gallery!**
 
