@@ -20,6 +20,10 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 * Run without internet connection and with few dependencies
 * Support keyboard interactions
 
+## Demonstration
+
+The online demonstration is available here: https://pierrick.frama.io/very-simple-javascript-image-gallery/
+
 ## Clone the repository
 
 Get the source code with the following command
@@ -37,7 +41,7 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
      |__-js/
            |__ simple-gallery.js    (JS code of the gallery)
 
- -demo/
+ -public/
      |__-css/
      |     |__ simple-gallery.css   (CSS code of the gallery)
      |__-js/
@@ -52,11 +56,6 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ## Dependencies
 
 The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6.3.min.js
-
-## Demonstration
-
-After downloading the project you can find a standalone demonstration in folder **demo**.
-You just have to open **index.html** file with your favorite web browser.
 
 ### Screenshot
 
