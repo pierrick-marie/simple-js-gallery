@@ -129,6 +129,8 @@ body {
 
 	width: auto;
 	height: auto;
+
+	cursor: pointer;
 }
 
 /**
@@ -170,8 +172,6 @@ body {
 	box-shadow: 10px 10px 10px #444343;
 
 	background-color: #ffffff90;
-
-	cursor: pointer;
 }
 
 /**
@@ -202,6 +202,26 @@ body {
  */
 .simple-gallery-right-arrow {	
 	float: right;
+}
+
+/**
+ * left arrow in full sceen view
+ */
+ .simple-gallery-left-arrow-full-screen {	
+	position: fixed;
+
+	left: 50px;
+	top: 40vh;
+}
+
+/**
+ * right arrow in full sceen view
+ */
+.simple-gallery-right-arrow-full-screen {	
+	position: fixed;
+
+	right: 50px;
+	top: 40vh;
 }
 
 .cursorDefault {

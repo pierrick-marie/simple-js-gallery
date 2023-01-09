@@ -22,6 +22,8 @@ $(document).ready(function () {
 	setupImages(); 	
 
 	setupKeyboardBinding();
+
+	
 });
 
 /**
@@ -242,6 +244,8 @@ function toggleFullScreenView() {
 		displayFullScreenView();
 
 		$('body').addClass('backgroundBlack'); // change background to black
+		$(`.${GALLERY}-left-arrow`).addClass('simple-gallery-left-arrow-full-screen');
+		$(`.${GALLERY}-right-arrow`).addClass('simple-gallery-right-arrow-full-screen');
 
 		IS_FULL_SCREEN_MODE = true;
 
@@ -249,12 +253,13 @@ function toggleFullScreenView() {
 		displayDefaultView();
 
 		$('body').removeClass('backgroundBlack'); // remove black background
+		$(`.${GALLERY}-left-arrow`).removeClass('simple-gallery-left-arrow-full-screen');
+		$(`.${GALLERY}-right-arrow`).removeClass('simple-gallery-right-arrow-full-screen');
 
 		IS_FULL_SCREEN_MODE = false;
 	}
 
 	$(`.${THUMBNAILS}`).toggle();	// hide thumbnails
-	// $(`.${ARROWS}`).toggle(); 	// hide arrows
 	$(`.${TITLE}`).toggle(); 	// hide titles
 }
 
