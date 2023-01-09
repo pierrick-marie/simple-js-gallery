@@ -17,14 +17,31 @@ var IS_FULL_SCREEN_MODE = false;	// save whether the image is displayed in full 
 
 $(document).ready(function () {
 
-	setupGallerySections(); 
+	setupGallerySections();
 
-	setupImages(); 	
+	setupImages();
 
 	setupKeyboardBinding();
 
-	
+	setupMouseMove();
 });
+
+/**
+ * Fade out arrows in full screen view 
+ * Arrows appear if mouse is on left or right side of the screen (1/5 and 4/5 of the screen) 
+ */
+function setupMouseMove() {
+
+	$(document).mousemove(function (event) {
+		if (IS_FULL_SCREEN_MODE) {
+			if( (event.pageX < $(document).width() / 5) || (event.pageX > 4 * $(document).width() / 5) ){
+				$(`.${ARROWS}`).fadeIn();
+			} else {
+				$(`.${ARROWS}`).fadeOut();
+			}
+		}
+	});
+}
 
 /**
  * Init the sections: title, arrows and thumbnails
@@ -35,11 +52,11 @@ function setupGallerySections() {
 		.addClass('positionOfGallery')	// Defines the position of the gallery
 		.addClass('decorationGallery');	// Decorates the gallery
 
-	setupTitlesSection(); 
+	setupTitlesSection();
 
 	setupThumbnailsSection();
 
-	setupArrows(); 
+	setupArrows();
 }
 
 /**
@@ -60,7 +77,7 @@ function setupImages() {
 		$(this).click(toggleFullScreenView);	// Call toggleFullScreenView function on click to the main image
 	});
 
-	setupImagesClass(); 
+	setupImagesClass();
 }
 
 /**
@@ -130,13 +147,13 @@ function setupKeyboardBinding() {
 
 	$(document).keydown(function (event) {
 		if (event.which == 37) { 	// left key pressed
-			leftArrowClicked();	
+			leftArrowClicked();
 		} else {
 			if (event.which == 39) { 	// right key pressed
-				rightArrowClicked();	
+				rightArrowClicked();
 			} else {
 				if (event.which == 27 && IS_FULL_SCREEN_MODE == true) { // escape key pressed && in full screen view
-					toggleFullScreenView(); 
+					toggleFullScreenView();
 				} else {
 					if (event.which == 70) { 	// f key pressed
 						toggleFullScreenView();
@@ -246,6 +263,7 @@ function toggleFullScreenView() {
 		$('body').addClass('backgroundBlack'); // change background to black
 		$(`.${GALLERY}-left-arrow`).addClass('simple-gallery-left-arrow-full-screen');
 		$(`.${GALLERY}-right-arrow`).addClass('simple-gallery-right-arrow-full-screen');
+		$(`.${ARROWS}`).fadeOut(1000);
 
 		IS_FULL_SCREEN_MODE = true;
 
@@ -255,6 +273,7 @@ function toggleFullScreenView() {
 		$('body').removeClass('backgroundBlack'); // remove black background
 		$(`.${GALLERY}-left-arrow`).removeClass('simple-gallery-left-arrow-full-screen');
 		$(`.${GALLERY}-right-arrow`).removeClass('simple-gallery-right-arrow-full-screen');
+		$(`.${ARROWS}`).fadeIn();
 
 		IS_FULL_SCREEN_MODE = false;
 	}
