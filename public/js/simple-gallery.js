@@ -23,24 +23,32 @@ $(document).ready(function () {
 
 	setupKeyboardBinding();
 
-	setupMouseMove();
+	// Setup display arrows following mouse moves
+	let timer;	// The id of the timer
+	$(document).mousemove(function (event) {
+		fadeInArrows(event);
+		clearTimeout(timer); // reset timer
+		timer = setTimeout(fadeOutArrows, 2 * 1000) // fade out arrows after 2 seconds
+	});
 });
 
 /**
- * Fade out arrows in full screen view 
- * Arrows appear if mouse is on left or right side of the screen (1/5 and 4/5 of the screen) 
- */
-function setupMouseMove() {
+ * Fade in arrows in full screen view 
+*/
+function fadeInArrows(event) {
 
-	$(document).mousemove(function (event) {
-		if (IS_FULL_SCREEN_MODE) {
-			if( (event.pageX < $(document).width() / 5) || (event.pageX > 4 * $(document).width() / 5) ){
-				$(`.${ARROWS}`).fadeIn();
-			} else {
-				$(`.${ARROWS}`).fadeOut();
-			}
-		}
-	});
+	if (IS_FULL_SCREEN_MODE) {
+		$(`.${ARROWS}`).fadeIn();
+	}
+}
+
+/**
+ * Fade out arrows in full screen view 
+*/
+function fadeOutArrows() {
+	if (IS_FULL_SCREEN_MODE) {
+		$(`.${ARROWS}`).fadeOut();
+	}
 }
 
 /**

@@ -17,12 +17,39 @@ var IS_FULL_SCREEN_MODE = false;	// save whether the image is displayed in full 
 
 $(document).ready(function () {
 
-	setupGallerySections(); 
+	setupGallerySections();
 
-	setupImages(); 	
+	setupImages();
 
 	setupKeyboardBinding();
+
+	// Setup display arrows following mouse moves
+	let timer;	// The id of the timer
+	$(document).mousemove(function (event) {
+		fadeInArrows(event);
+		clearTimeout(timer); // reset timer
+		timer = setTimeout(fadeOutArrows, 2 * 1000) // fade out arrows after 2 seconds
+	});
 });
+
+/**
+ * Fade in arrows in full screen view 
+*/
+function fadeInArrows(event) {
+
+	if (IS_FULL_SCREEN_MODE) {
+		$(`.${ARROWS}`).fadeIn();
+	}
+}
+
+/**
+ * Fade out arrows in full screen view 
+*/
+function fadeOutArrows() {
+	if (IS_FULL_SCREEN_MODE) {
+		$(`.${ARROWS}`).fadeOut();
+	}
+}
 
 /**
  * Init the sections: title, arrows and thumbnails
@@ -33,11 +60,11 @@ function setupGallerySections() {
 		.addClass('positionOfGallery')	// Defines the position of the gallery
 		.addClass('decorationGallery');	// Decorates the gallery
 
-	setupTitlesSection(); 
+	setupTitlesSection();
 
 	setupThumbnailsSection();
 
-	setupArrows(); 
+	setupArrows();
 }
 
 /**
@@ -58,7 +85,7 @@ function setupImages() {
 		$(this).click(toggleFullScreenView);	// Call toggleFullScreenView function on click to the main image
 	});
 
-	setupImagesClass(); 
+	setupImagesClass();
 }
 
 /**
@@ -128,13 +155,13 @@ function setupKeyboardBinding() {
 
 	$(document).keydown(function (event) {
 		if (event.which == 37) { 	// left key pressed
-			leftArrowClicked();	
+			leftArrowClicked();
 		} else {
 			if (event.which == 39) { 	// right key pressed
-				rightArrowClicked();	
+				rightArrowClicked();
 			} else {
 				if (event.which == 27 && IS_FULL_SCREEN_MODE == true) { // escape key pressed && in full screen view
-					toggleFullScreenView(); 
+					toggleFullScreenView();
 				} else {
 					if (event.which == 70) { 	// f key pressed
 						toggleFullScreenView();
@@ -242,6 +269,9 @@ function toggleFullScreenView() {
 		displayFullScreenView();
 
 		$('body').addClass('backgroundBlack'); // change background to black
+		$(`.${GALLERY}-left-arrow`).addClass('simple-gallery-left-arrow-full-screen');
+		$(`.${GALLERY}-right-arrow`).addClass('simple-gallery-right-arrow-full-screen');
+		$(`.${ARROWS}`).fadeOut(1000);
 
 		IS_FULL_SCREEN_MODE = true;
 
@@ -249,12 +279,14 @@ function toggleFullScreenView() {
 		displayDefaultView();
 
 		$('body').removeClass('backgroundBlack'); // remove black background
+		$(`.${GALLERY}-left-arrow`).removeClass('simple-gallery-left-arrow-full-screen');
+		$(`.${GALLERY}-right-arrow`).removeClass('simple-gallery-right-arrow-full-screen');
+		$(`.${ARROWS}`).fadeIn();
 
 		IS_FULL_SCREEN_MODE = false;
 	}
 
 	$(`.${THUMBNAILS}`).toggle();	// hide thumbnails
-	// $(`.${ARROWS}`).toggle(); 	// hide arrows
 	$(`.${TITLE}`).toggle(); 	// hide titles
 }
 
