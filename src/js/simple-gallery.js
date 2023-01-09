@@ -5,11 +5,11 @@
  * All rights reserved.
  **/
 
-const GALLERY = 'simple-js-gallery';		// the id of the main section of the gallery
-const IMAGES = `#${GALLERY} > img`;		// all the images of the gallery
-const THUMBNAILS = `${GALLERY}-thumbnails`;	// the id of thumbnails section
-const TITLE = `${GALLERY}-title`;		// the id of title section
-const ARROWS = `${GALLERY}-arrows`;		// the id of arrows section
+const GALLERY = 'simple-gallery';		// the class of the main section of the gallery
+const IMAGES = `.${GALLERY} > img`;		// all the images of the gallery
+const THUMBNAILS = `${GALLERY}-thumbnails`;	// the class of thumbnails section
+const TITLE = `${GALLERY}-title`;		// the class of title section
+const ARROWS = `${GALLERY}-arrows`;		// the class of arrows section
 
 var CURRENT_IMAGE_NUMBER = 0;		// the number of the current image displayed on the screen
 var NB_IMAGES = 0;		// the total number of images
@@ -29,8 +29,9 @@ $(document).ready(function () {
  */
 function setupGallerySections() {
 
-	$(`#${GALLERY}`).addClass('sizeOfGallery');	// Defines the size of the gallery
-	$(`#${GALLERY}`).addClass('positionOfGallery');	// Defines the position of the gallery
+	$(`.${GALLERY}`).addClass('sizeOfGallery')	// Defines the size of the gallery
+		.addClass('positionOfGallery')	// Defines the position of the gallery
+		.addClass('decorationGallery');	// Decorates the gallery
 
 	setupTitlesSection(); 
 
@@ -44,7 +45,7 @@ function setupGallerySections() {
  * 	- init global var NB_IMAGES
  * 	- add class defaultView
  * 	- hide all images except the first
- * 	- add id to all images
+ * 	- add class to all images
  */
 function setupImages() {
 
@@ -57,7 +58,7 @@ function setupImages() {
 		$(this).click(toggleFullScreenView);	// Call toggleFullScreenView function on click to the main image
 	});
 
-	setupImagesId(); 
+	setupImagesClass(); 
 }
 
 /**
@@ -65,7 +66,7 @@ function setupImages() {
  */
 function setupThumbnailsSection() {
 
-	$(`#${GALLERY}`).append(`<section id="${THUMBNAILS}"></section>`);	// Add a section for thumbnails after the images
+	$(`.${GALLERY}`).append(`<section class="${THUMBNAILS}"></section>`);	// Add a section for thumbnails after the images
 
 	setupThumbnailImages();
 }
@@ -73,26 +74,26 @@ function setupThumbnailsSection() {
 /**
  * Setup thumbnails of images
  * It clones all images in '.thumbnails' class.
- * Then it adds an id like #thumbnail-{number}
+ * Then it adds an class like .thumbnail-{number}
  *  where {number} starts from 0 to the number of images
  * Finally it adds '.cursorPointer' class to all images except the first
  */
 function setupThumbnailImages() {
 
-	const _thumbnailId = `${GALLERY}-thumbnail-`;	// Id of thumbnail
+	const _thumbnailClass = `${GALLERY}-thumbnail-`;	// Class of thumbnail
 	var index = 0;
 
 	$(IMAGES).each(function () {
-		$(`#${THUMBNAILS}`).append(
+		$(`.${THUMBNAILS}`).append(
 			$(this).clone()
-				.attr('id', _thumbnailId.concat(index))		// Add id #thumbnails-{index}
-				.click({ id: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
+				.attr('class', _thumbnailClass.concat(index))	// Add class .thumbnails-{index}
+				.click({ class: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
 		);
 		index++;
 	});
 
-	$(`#${THUMBNAILS} img`).slice(1).addClass('cursorPointer'); // Add cursor clickable to all thumbnails except first
-	$(`#${THUMBNAILS} img`).first().addClass('shadow'); // Add shadow on first thumbnail
+	$(`.${THUMBNAILS} img`).slice(1).addClass('cursorPointer'); // Add cursor clickable to all thumbnails except first
+	$(`.${THUMBNAILS} img`).first().addClass('shadow'); // Add shadow on first thumbnail
 }
 
 /**
@@ -103,7 +104,7 @@ function setupTitlesSection() {
 
 	const _titleValue = $(IMAGES).first().attr('title');	// Get title of the first image
 
-	$(`#${GALLERY}`).prepend(`<h1 id="${TITLE}">${_titleValue}</h1>`);	// Insert h1 section
+	$(`.${GALLERY}`).prepend(`<h1 class="${TITLE}">${_titleValue}</h1>`);	// Insert h1 section
 }
 
 /**
@@ -112,10 +113,10 @@ function setupTitlesSection() {
  */
 function setupArrows() {
 
-	$(`#${TITLE}`).after(`
+	$(`.${TITLE}`).after(`
 		<nav>
-			<img id="${GALLERY}-left-arrow" class="${ARROWS}" src="./img/utils/left.png" onclick="leftArrowClicked()"/>
-			<img id="${GALLERY}-right-arrow" class="${ARROWS}" src="./img/utils/right.png" onclick="rightArrowClicked()"/>
+			<img class="${GALLERY}-left-arrow ${ARROWS}" src="./img/utils/left.png" onclick="leftArrowClicked()"/>
+			<img class="${GALLERY}-right-arrow ${ARROWS}" src="./img/utils/right.png" onclick="rightArrowClicked()"/>
 		</nav>
 	`);	// Insert the arrows
 }
@@ -145,18 +146,18 @@ function setupKeyboardBinding() {
 }
 
 /**
- * Setup id for each images
- * ids are: #images-{number}
+ * Setup class for each images
+ * classes are: .images-{number}
  * {number} starts at 0 and increase to the number of images
  */
-function setupImagesId() {
+function setupImagesClass() {
 
-	const _imageId = `${GALLERY}-image`; // Id of images
+	const _imageClass = `${GALLERY}-image`; // Class of images
 
 	var index = 0;
 
 	$(IMAGES).each(function () {
-		$(this).attr('id', `${_imageId}-${index}`); // Add id #image-{index}
+		$(this).addClass(`${_imageClass}-${index}`); // Add class .image-{index}
 		index++;
 	});
 }
@@ -166,7 +167,7 @@ function setupImagesId() {
  * This function have to be called from click on thumbnails
  */
 function callChangeCurrentImage(event) {
-	changeCurrentImage(event.data.id);
+	changeCurrentImage(event.data.class);
 }
 
 /**
@@ -176,19 +177,19 @@ function changeCurrentImage(newIndex) {
 
 	if (CURRENT_IMAGE_NUMBER != newIndex) {
 
-		const _image = `#${GALLERY}-image`;			// Id of images
-		const _thumbnail = `#${GALLERY}-thumbnail`;	// Id of thumbnails
+		const _image = `.${GALLERY}-image`;			// class of images
+		const _thumbnail = `.${GALLERY}-thumbnail`;	// class of thumbnails
 
-		const _newImageId = `${_image}-${newIndex}`; 		// Compute new index of #image-
-		const _newThumbnailId = `${_thumbnail}-${newIndex}`;	// Compute new index of #thumbnail-
+		const _newImageClass = `${_image}-${newIndex}`; 		// Compute new index of .image-
+		const _newThumbnailClass = `${_thumbnail}-${newIndex}`;	// Compute new index of .thumbnail-
 
-		const _currentImageId = `${_image}-${CURRENT_IMAGE_NUMBER}`;		// Compute current index of is #image-
-		const _currentThumbnailId = `${_thumbnail}-${CURRENT_IMAGE_NUMBER}`;	// Compute current index of is #thumbnail-
+		const _currentImageClass = `${_image}-${CURRENT_IMAGE_NUMBER}`;		// Compute current index of is .image-
+		const _currentThumbnailClass = `${_thumbnail}-${CURRENT_IMAGE_NUMBER}`;	// Compute current index of is .thumbnail-
 
 		CURRENT_IMAGE_NUMBER = newIndex;	// update currentIndex with new value
 
-		$(_currentImageId).hide();	// hide previous image
-		$(_newImageId).show(); 		// display new image
+		$(_currentImageClass).hide();	// hide previous image
+		$(_newImageClass).show(); 		// display new image
 
 
 		if (IS_FULL_SCREEN_MODE == true) {
@@ -197,10 +198,10 @@ function changeCurrentImage(newIndex) {
 			displayDefaultView();
 		}
 
-		$(_currentThumbnailId).removeClass('shadow').removeClass('cursorDefault').addClass('cursorPointer');	// change skin of current thumbnail
-		$(_newThumbnailId).addClass('shadow').addClass('cursorDefault').removeClass('cursorPointer'); 		// change skin of new selected thumbnail
+		$(_currentThumbnailClass).removeClass('shadow').removeClass('cursorDefault').addClass('cursorPointer');	// change skin of current thumbnail
+		$(_newThumbnailClass).addClass('shadow').addClass('cursorDefault').removeClass('cursorPointer'); 		// change skin of new selected thumbnail
 
-		$(`#${TITLE}`).html($(_newImageId).attr('title')); // Update title
+		$(`.${TITLE}`).html($(_newImageClass).attr('title')); // Update title
 	}
 }
 
@@ -252,9 +253,9 @@ function toggleFullScreenView() {
 		IS_FULL_SCREEN_MODE = false;
 	}
 
-	$(`#${THUMBNAILS}`).toggle();	// hide thumbnails
-	$(`.${ARROWS}`).toggle(); 	// hide arrows
-	$(`#${TITLE}`).toggle(); 	// hide titles
+	$(`.${THUMBNAILS}`).toggle();	// hide thumbnails
+	// $(`.${ARROWS}`).toggle(); 	// hide arrows
+	$(`.${TITLE}`).toggle(); 	// hide titles
 }
 
 
@@ -263,10 +264,10 @@ function toggleFullScreenView() {
  */
 function displayFullScreenView() {
 
-	const _currentImageId = `#${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
+	const _currentImageClass = `.${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
 
-	$(_currentImageId).removeClass('defaultView'); // switch CSS of current image from default view to full screen view
-	$(_currentImageId).addClass('fullScreenView');
+	$(_currentImageClass).removeClass('defaultView'); // switch CSS of current image from default view to full screen view
+	$(_currentImageClass).addClass('fullScreenView');
 }
 
 /**
@@ -274,8 +275,8 @@ function displayFullScreenView() {
  */
 function displayDefaultView() {
 
-	const _currentImageId = `#${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
+	const _currentImageClass = `.${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
 
-	$(_currentImageId).removeClass('fullScreenView'); // switch CSS of current image from full screen view to full default view
-	$(_currentImageId).addClass('defaultView');
+	$(_currentImageClass).removeClass('fullScreenView'); // switch CSS of current image from full screen view to full default view
+	$(_currentImageClass).addClass('defaultView');
 }

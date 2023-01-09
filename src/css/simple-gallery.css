@@ -59,7 +59,7 @@ body {
 /** 
  * gallery 
  */
-#simple-js-gallery {
+.simple-gallery {
 	padding: 1%;
 
 	text-align: center;
@@ -68,7 +68,7 @@ body {
 /**
  * title
  */
-#simple-js-gallery-title {
+.simple-gallery-title {
 	position: relative;
 
 	font-size: 1.5em;
@@ -78,7 +78,7 @@ body {
 /** 
  * thumbnails
  */
-#simple-js-gallery-thumbnails {
+.simple-gallery-thumbnails {
 	position: sticky;
 	top: 100vh;
 	margin-left: auto;
@@ -99,7 +99,7 @@ body {
 /**
  * thumbnails img 
  */
-#simple-js-gallery-thumbnails img {		/* Thumbnails images, style and size */
+.simple-gallery-thumbnails img {		/* Thumbnails images, style and size */
 	width: auto;
 	height: auto;
 
@@ -117,14 +117,14 @@ body {
 /** 
  * thumbnails img:hover
  */
-#simple-js-gallery-thumbnails img:hover {		/* Add a shadow around thumbnails */
+.simple-gallery-thumbnails img:hover {		/* Add a shadow around thumbnails */
 	box-shadow: 5px 5px 5px #444343;
 }
 
 /** 
  * images img
  */
-#simple-js-gallery > img {
+.simple-gallery > img {
 	display: none;
 
 	width: auto;
@@ -177,7 +177,7 @@ body {
 /**
  * arrows
  */
-.simple-js-gallery-arrows {	/* The arrows to change current image (left and right) */
+.simple-gallery-arrows {	/* The arrows to change current image (left and right) */
 	position: relative;
 	
 	width: 8%;
@@ -186,19 +186,21 @@ body {
 	top: 10vh;
 
 	cursor: pointer;
+
+	z-index: 1000;
 }
 
 /**
  * left arrow
  */
-#simple-js-gallery-left-arrow {	
+.simple-gallery-left-arrow {	
 	float: left;
 }
 
 /**
  * right arrow
  */
-#simple-js-gallery-right-arrow {	
+.simple-gallery-right-arrow {	
 	float: right;
 }
 
