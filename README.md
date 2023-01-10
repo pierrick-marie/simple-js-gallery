@@ -2,6 +2,10 @@
 
 This is a very simple, lightweight and standalone image gallery developed in JavaScript with JQuery.
 
+# Demonstration
+
+The online demonstration is available here: https://pierrick.frama.io/very-simple-javascript-image-gallery/
+
 # Why another image gallery in JavaScript ?
 
 I had to install a lightweight image gallery on a USB key. The gallery had to run without any internet connection. Moreover I wanted to be absolutely sure of the behavior of the programme: displaying images whatever their size and no more!
@@ -10,7 +14,7 @@ I concluded I will spend less time in developing my own image gallery instead of
 
 The gallery is programmed to run in "full screen" mode. To reduce the size of the gallery, you have to modify the CSS.
 
-## Features
+# Features
 
 * Display images whatever their size
 * Possible to display images in full screen mode
@@ -20,11 +24,7 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 * Run without internet connection and with few dependencies
 * Support keyboard interactions
 
-## Demonstration
-
-The online demonstration is available here: https://pierrick.frama.io/very-simple-javascript-image-gallery/
-
-## Clone the repository
+# Clone the repository
 
 Get the source code with the following command
 
@@ -32,7 +32,7 @@ Get the source code with the following command
 git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ```
 
-## Architecture of the project
+# Architecture of the project
 
 ```
  -src/
@@ -53,7 +53,7 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
      |__-index.html     (example page of the gallery)
 ```
 
-## Dependencies
+# Dependencies
 
 The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6.3.min.js
 
@@ -61,7 +61,7 @@ The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6
 
 [![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)
 
-## Installation
+# Installation
 
 ### 1. Setup CSS
 
@@ -156,7 +156,7 @@ To change the other elements, use the following classes
 
 ### 5. Enjoy your gallery!
 
-## Usage
+# Usage
 
 ### Navigate through the images
 
@@ -181,15 +181,15 @@ There are three options to display image in default view mode:
 * press key f
 * press key escape
 
-## Authors and acknowledgment
+# Authors and acknowledgment
 
-Developer: Pierrick MARIE
+Developer: Pierrick MARIE contact at pierrickmarie.info
 
-## License
+# License
 
 This project is under *3-Clause BSD License*.
 
-## Project status
+# Project status
 
 The project is still under development.
 
