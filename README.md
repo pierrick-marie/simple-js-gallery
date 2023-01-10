@@ -37,9 +37,9 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
 ```
  -src/
      |__-css/
-     |     |__ simple-gallery.css   (CSS code of the gallery)
+     |     |__ simple-gallery.css   (CSS code of the gallery - copy from public by CI)
      |__-js/
-           |__ simple-gallery.js    (JS code of the gallery)
+           |__ simple-gallery.js    (JS code of the gallery  - copy from public by CI)
 
  -public/
      |__-css/
@@ -50,7 +50,7 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
      |__-img/
      |     |__ gallery/ (all images for the gallery demonstration)
      |     |__ utils/   (all side images for the demonstration)
-     |__-index.html     (the page of the gallery)
+     |__-index.html     (example page of the gallery)
 ```
 
 ## Dependencies
@@ -90,7 +90,7 @@ Copy the following code where you want to place the gallery
 
 ```html
 <!-- Main place for the gallery: titles, images and thumbnails -->
-<section id="simple-js-gallery"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
+<section class="simple-js-gallery"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
 
     <!-- Titles and are generated from title attribute -->
 	<!-- Thumbnails are generated automatically from images -->
@@ -144,15 +144,15 @@ You can change the design of the gallery with the following CSS class
 }
 ```
 
-To change the other elements, use the following id and class
+To change the other elements, use the following classes
 
 * main image in default view -> *.defaultView*
 * main image in full screen view -> *.fullScreenView*
-* thumbnails area -> *#simple-js-gallery-thumbnails*
-* thumbnails images -> *#simple-js-gallery-thumbnails img*
+* thumbnails area -> *.simple-js-gallery-thumbnails*
+* thumbnails images -> *.simple-js-gallery-thumbnails img*
 * arrows -> *.simple-js-gallery-arrows*
-* left arrow -> *#simple-js-gallery-left-arrow*
-* right arrow -> *#simple-js-gallery-right-arrow*
+* left arrow -> *.simple-js-gallery-left-arrow*
+* right arrow -> *.simple-js-gallery-right-arrow*
 
 ### 5. Enjoy your gallery!
 
@@ -192,6 +192,10 @@ This project is under *3-Clause BSD License*.
 ## Project status
 
 The project is still under development.
+
+# Contributing
+
+Do not hesitate to improve to this program. Feel free to send PR or contact me to send comments. You are welcome to fork this project also ;)
 
 # Badges
 
