@@ -4,7 +4,7 @@ This is a very simple, lightweight and standalone image gallery developed in Jav
 
 # Demonstration
 
-The online demonstration is available here: https://pierrick.frama.io/very-simple-javascript-image-gallery/
+The online demonstration is available here: https://pierrick.frama.io/simple-javascript-image-gallery/
 
 # Why another image gallery in JavaScript ?
 
@@ -29,7 +29,7 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 Get the source code with the following command
 
 ```
-git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
+git clone https://framagit.org/pierrick/simple-javascript-image-gallery.git
 ```
 
 # Architecture of the project
@@ -59,7 +59,7 @@ The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6
 
 ### Screenshot
 
-[![Screenshot](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)](https://framagit.org/pierrick/very-simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)
+[![Screenshot](https://framagit.org/pierrick/simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)](https://framagit.org/pierrick/simple-javascript-image-gallery/-/raw/main/public/screenshot.jpg)
 
 # Installation
 
