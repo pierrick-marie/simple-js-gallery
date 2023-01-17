@@ -142,8 +142,8 @@ function setupArrows() {
 
 	$(`.${TITLE}`).after(`
 		<nav>
-			<img class="${GALLERY}-left-arrow ${ARROWS}" src="./img/utils/left.png" onclick="leftArrowClicked()"/>
-			<img class="${GALLERY}-right-arrow ${ARROWS}" src="./img/utils/right.png" onclick="rightArrowClicked()"/>
+			<img class="${GALLERY}-left-arrow ${ARROWS}" src="./img/utils/left-arrow.png" onclick="leftArrowClicked()"/>
+			<img class="${GALLERY}-right-arrow ${ARROWS}" src="./img/utils/right-arrow.png" onclick="rightArrowClicked()"/>
 		</nav>
 	`);	// Insert the arrows
 }

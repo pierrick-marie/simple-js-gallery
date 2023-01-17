@@ -39,7 +39,11 @@ git clone https://framagit.org/pierrick/very-simple-javascript-image-gallery.git
      |__-css/
      |     |__ simple-gallery.css   (CSS code of the gallery - copy from public by CI)
      |__-js/
-           |__ simple-gallery.js    (JS code of the gallery  - copy from public by CI)
+     |     |__ simple-gallery.js    (JS code of the gallery  - copy from public by CI)
+     |__-img/
+           |__ -utils/
+	           |__-left-arrow.png	      (Left arrow of gallery)
+	           |__-right-arrow.png      (Right arrow of gallery)
 
  -public/
      |__-css/
@@ -84,7 +88,11 @@ Import both **JavaScript files** at the end of your html file
 <script type="text/javascript" src="./js/simple-gallery.js"></script>
 ```
 
-### 3. Setup the images of the gallery
+### 3. Copy images of left and right arrow
+
+Copy **utils/** folder from **src/img/** to your images folder
+
+### 4. Setup the images of the gallery
 
 Copy the following code where you want to place the gallery
 
@@ -104,7 +112,7 @@ Copy the following code where you want to place the gallery
 
 Add your images in section *#simple-js-gallery* according to the examples
 
-### 4. Optional: Customize the gallery
+### 5. Optional: Customize the gallery
 
 To change position and size of your gallery with CSS open **simple-gallery.css** and modify the following properties
 
@@ -154,7 +162,7 @@ To change the other elements, use the following classes
 * left arrow -> *.simple-js-gallery-left-arrow*
 * right arrow -> *.simple-js-gallery-right-arrow*
 
-### 5. Enjoy your gallery!
+### 6. Enjoy your gallery!
 
 # Usage
 

@@ -1,7 +1,7 @@
 /**
  * BSD 3-Clause License
  *
- * Copyright (c) 2023, pierrick
+ * Copyright (c) 2023, Pierrick MARIE contact at pierrickmarie.info
  * All rights reserved.
  **/
 
@@ -142,8 +142,8 @@ function setupArrows() {
 
 	$(`.${TITLE}`).after(`
 		<nav>
-			<img class="${GALLERY}-left-arrow ${ARROWS}" src="./img/utils/left.png" onclick="leftArrowClicked()"/>
-			<img class="${GALLERY}-right-arrow ${ARROWS}" src="./img/utils/right.png" onclick="rightArrowClicked()"/>
+			<img class="${GALLERY}-left-arrow ${ARROWS}" src="./img/utils/left-arrow.png" onclick="leftArrowClicked()"/>
+			<img class="${GALLERY}-right-arrow ${ARROWS}" src="./img/utils/right-arrow.png" onclick="rightArrowClicked()"/>
 		</nav>
 	`);	// Insert the arrows
 }
