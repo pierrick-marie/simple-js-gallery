@@ -1,4 +1,5 @@
-# Simple JavaScript Image Gallery
+Simple JavaScript Image Gallery
+==================================
 
 This is a very simple, lightweight and standalone image gallery developed in JavaScript with JQuery.
 
