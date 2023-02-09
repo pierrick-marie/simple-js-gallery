@@ -9,9 +9,10 @@
  * === POSITION OF THE GALLERY ===
  */
  .positionOfGallery {
-	position: absolute;
-	top: 20%;
-	left: 20%;
+	/* position: absolute; */
+	margin-top: 10vh;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /**
@@ -72,6 +73,7 @@ body {
 	position: relative;
 
 	margin: 0;
+	margin-bottom: 2vh;
 }
 @media screen and (max-width: 1999px) {
 	.simple-gallery-title {
@@ -88,31 +90,33 @@ body {
  * thumbnails
  */
 .simple-gallery-thumbnails {
-	position: sticky;
-	top: 100vh;
+	/* position: sticky; */
+	/* top: 100vh; */
+	margin-top: 4vh;
 	margin-left: auto;
 	margin-right: auto;
 	
 	display: flex;
-	justify-content: space-around;
+	/* justify-content: space-around; */
+	gap: 10px;
+	align-items: center;
 
 	width: 96%; 
 	height: 15%;
 
 	padding-bottom: 1%;
 
-	overflow-y: hidden; /* Allow horizontal scroll if there are more images than screen width available */
-	overflow-x: scroll;
+	/* overflow-y: hidden; /* Allow horizontal scroll if there are more images than screen width available */
+	overflow-x: auto;
 }
 
 /**
  * thumbnails img 
  */
 .simple-gallery-thumbnails img {		/* Thumbnails images, style and size */
-	width: auto;
-	height: auto;
-
-	height: 60%;
+	width: 100px;
+	/* height: auto; */
+	/* height: 10%; */
 
 	border-radius: 10px;
 	border-style: solid;
@@ -121,6 +125,8 @@ body {
 
 	margin-top: auto;
 	margin-bottom: auto;
+	/* margin-left: 10px;
+	margin-right: 10px; */
 }
 
 /** 
