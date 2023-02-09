@@ -56,9 +56,10 @@ function fadeOutArrows() {
  */
 function setupGallerySections() {
 
-	$(`.${GALLERY}`).addClass('sizeOfGallery')	// Defines the size of the gallery
-		.addClass('positionOfGallery')	// Defines the position of the gallery
-		.addClass('decorationGallery');	// Decorates the gallery
+	// Defines the size of the gallery
+	// Defines the position of the gallery
+	// Decorates the gallery
+	$(`.${GALLERY}`).addClass('sizeOfGallery positionOfGallery decorationGallery');	
 
 	setupTitlesSection();
 
@@ -78,8 +79,7 @@ function setupImages() {
 
 	NB_IMAGES = $(IMAGES).length;	// Count number of images to display
 
-	$(IMAGES).first().addClass('defaultView');	// Add classes defaultView to the first image
-	$(IMAGES).first().show();	// Show first image
+	$(IMAGES).first().addClass('defaultView').show();	// Add classes defaultView to the first image
 
 	$(IMAGES).each(function () {	// For each images
 		$(this).click(toggleFullScreenView);	// Call toggleFullScreenView function on click to the main image
@@ -113,8 +113,8 @@ function setupThumbnailImages() {
 	$(IMAGES).each(function () {
 		$(`.${THUMBNAILS}`).append(
 			$(this).clone()
-				.attr('class', _thumbnailClass.concat(index))	// Add class .thumbnails-{index}
-				.click({ class: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
+				.attr('class', `${GALLERY}-thumbnail-${index}`)	// Add class .thumbnails-{index}
+				.click({ classIndex: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
 		);
 		index++;
 	});
@@ -194,7 +194,7 @@ function setupImagesClass() {
  * This function have to be called from click on thumbnails
  */
 function callChangeCurrentImage(event) {
-	changeCurrentImage(event.data.class);
+	changeCurrentImage(event.data.classIndex);
 }
 
 /**
@@ -216,7 +216,7 @@ function changeCurrentImage(newIndex) {
 		CURRENT_IMAGE_NUMBER = newIndex;	// update currentIndex with new value
 
 		$(_currentImageClass).hide();	// hide previous image
-		$(_newImageClass).show(); 		// display new image
+		$(_newImageClass).show(); 	// display new image
 
 
 		if (IS_FULL_SCREEN_MODE == true) {
