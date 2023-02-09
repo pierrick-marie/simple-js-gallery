@@ -225,6 +225,8 @@ function changeCurrentImage(newIndex) {
 			displayDefaultView();
 		}
 
+		$(`.${THUMBNAILS}`).scrollLeft($(_currentThumbnailClass).width() * CURRENT_IMAGE_NUMBER);	// Update horizontal scroll position of thumbnails 
+
 		$(_currentThumbnailClass).removeClass('shadow').removeClass('cursorDefault').addClass('cursorPointer');	// change skin of current thumbnail
 		$(_newThumbnailClass).addClass('shadow').addClass('cursorDefault').removeClass('cursorPointer'); 		// change skin of new selected thumbnail
 
