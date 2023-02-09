@@ -90,9 +90,6 @@ body {
  * thumbnails
  */
 .simple-gallery-thumbnails {
-	/* position: sticky; */
-	/* top: 100vh; */
-	margin-top: 4vh;
 	margin-left: auto;
 	margin-right: auto;
 	
@@ -102,7 +99,6 @@ body {
 	align-items: center;
 
 	width: 96%; 
-	height: 15%;
 
 	padding-bottom: 1%;
 
@@ -114,19 +110,23 @@ body {
  * thumbnails img 
  */
 .simple-gallery-thumbnails img {		/* Thumbnails images, style and size */
-	width: 100px;
-	/* height: auto; */
-	/* height: 10%; */
-
 	border-radius: 10px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #444343;
 
-	margin-top: auto;
-	margin-bottom: auto;
-	/* margin-left: 10px;
-	margin-right: 10px; */
+	margin-top: 2vh;
+	margin-bottom: 1vh;
+}
+@media screen and (max-width: 1999px) {
+	.simple-gallery-thumbnails img {
+		width: 100px;
+	}	
+}
+@media screen and (min-width: 2000px) {
+	.simple-gallery-thumbnails img {
+		width: 200px;
+	}	
 }
 
 /** 
@@ -171,13 +171,7 @@ body {
  * ==> remove .fullScreenView before !
  */
 .defaultView {
-	position: relative;
-	top: 0;
-
 	padding: 1%;
-
-	max-height: 76%; /* To change the size of the main image in default mode */
-	max-width: 76%;
 
 	border-radius: 20px;
    	border-style: solid;
@@ -187,6 +181,11 @@ body {
 	box-shadow: 10px 10px 10px #444343;
 
 	background-color: #ffffff90;
+
+	width: auto;
+	height: auto;
+	max-height: 50vh;
+	max-width: 75%;
 }
 
 /**
