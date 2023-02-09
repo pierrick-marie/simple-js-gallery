@@ -71,8 +71,17 @@ body {
 .simple-gallery-title {
 	position: relative;
 
-	font-size: 1.5em;
 	margin: 0;
+}
+@media screen and (max-width: 1999px) {
+	.simple-gallery-title {
+		font-size: 1.5em;
+	}	
+}
+@media screen and (min-width: 2000px) {
+	.simple-gallery-title {
+		font-size: 3em;
+	}	
 }
 
 /** 
@@ -127,9 +136,6 @@ body {
 .simple-gallery > img {
 	display: none;
 
-	width: auto;
-	height: auto;
-
 	cursor: pointer;
 }
 
@@ -142,6 +148,9 @@ body {
 	top: 0;
 	left: 50%;
 	transform: translate(-50%, 0);
+
+	width: auto;
+	height: 100vh;
 
 	max-width: 100vw;
 	max-height: 100vh;
