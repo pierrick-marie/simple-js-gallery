@@ -5,7 +5,7 @@ This is a very simple, lightweight and standalone image gallery developed in Jav
 
 # Demonstration
 
-The online demonstration is available here: https://pierrick.frama.io/simple-gallery
+The online demonstration is available here: https://pierrick-marie.github.io/Simple-JS-Gallery/
 
 # Why another image gallery in JavaScript ?
 
