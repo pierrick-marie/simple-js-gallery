@@ -1,0 +1,14 @@
+<head>
+
+	<title>A simple, lightweight and standalone image gallery</title>
+
+	<meta name="author" content="Pierrick MARIE">
+	<meta charset="utf-8" >
+
+	<link rel='icon' type='image/x-icon' href='./img/utils/logo.png'>
+
+	{{ $sass := resources.Get "./sass/simple-gallery.scss" }}
+	{{ $style := $sass | resources.ToCSS }}
+	<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+
+</head>
