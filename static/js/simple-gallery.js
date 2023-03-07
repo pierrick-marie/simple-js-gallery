@@ -7,8 +7,8 @@
 
 const GALLERY = 'simple-gallery';		// the class of the main section of the gallery
 const IMAGES = `.${GALLERY} > img`;		// all the images of the gallery
-const THUMBNAILS = `${GALLERY}-thumbnails`;	// the class of thumbnails section
-const TITLE = `${GALLERY}-title`;		// the class of title section
+const THUMBNAILS = `simple-gallery .thumbnails `;	// the class of thumbnails section
+const TITLE = `gallery-title`;		// the class of title section
 const ARROWS = `${GALLERY}-arrows`;		// the class of arrows section
 
 var CURRENT_IMAGE_NUMBER = 0;		// the number of the current image displayed on the screen
@@ -56,11 +56,6 @@ function fadeOutArrows() {
  */
 function setupGallerySections() {
 
-	// Defines the size of the gallery
-	// Defines the position of the gallery
-	// Decorates the gallery
-	$(`.${GALLERY}`).addClass('sizeOfGallery positionOfGallery decorationGallery');	
-
 	setupTitlesSection();
 
 	setupThumbnailsSection();
@@ -93,7 +88,7 @@ function setupImages() {
  */
 function setupThumbnailsSection() {
 
-	$(`.${GALLERY}`).append(`<section class="${THUMBNAILS}"></section>`);	// Add a section for thumbnails after the images
+	$(`.${GALLERY}`).append(`<div class="thumbnails"></div>`); // Add a section for thumbnails after the images
 
 	setupThumbnailImages();
 }
@@ -107,13 +102,13 @@ function setupThumbnailsSection() {
  */
 function setupThumbnailImages() {
 
-	const _thumbnailClass = `${GALLERY}-thumbnail-`;	// Class of thumbnail
 	var index = 0;
 
 	$(IMAGES).each(function () {
 		$(`.${THUMBNAILS}`).append(
 			$(this).clone()
-				.attr('class', `${GALLERY}-thumbnail-${index}`)	// Add class .thumbnails-{index}
+				.addClass('thumbnail')
+				.addClass(`thumbnail-${index}`)	// Add class .thumbnails-{index}
 				.click({ classIndex: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
 		);
 		index++;
@@ -140,10 +135,10 @@ function setupTitlesSection() {
  */
 function setupArrows() {
 
-	$(`.${TITLE}`).after(`
-		<nav>
-			<img class="${GALLERY}-left-arrow ${ARROWS}" src="./img/utils/left-arrow.png" onclick="leftArrowClicked()"/>
-			<img class="${GALLERY}-right-arrow ${ARROWS}" src="./img/utils/right-arrow.png" onclick="rightArrowClicked()"/>
+	$(`.${GALLERY}`).append(`
+		<nav class="arrows">
+			<img class="left arrow" src="./img/utils/left-arrow.png" onclick="leftArrowClicked()"/>
+			<img class="right arrow" src="./img/utils/right-arrow.png" onclick="rightArrowClicked()"/>
 		</nav>
 	`);	// Insert the arrows
 }
@@ -179,12 +174,12 @@ function setupKeyboardBinding() {
  */
 function setupImagesClass() {
 
-	const _imageClass = `${GALLERY}-image`; // Class of images
-
 	var index = 0;
 
 	$(IMAGES).each(function () {
-		$(this).addClass(`${_imageClass}-${index}`); // Add class .image-{index}
+		$(this)
+			.addClass('image')
+			.addClass(`image-${index}`); // Add class .image-{index}
 		index++;
 	});
 }
@@ -204,8 +199,8 @@ function changeCurrentImage(newIndex) {
 
 	if (CURRENT_IMAGE_NUMBER != newIndex) {
 
-		const _image = `.${GALLERY}-image`;			// class of images
-		const _thumbnail = `.${GALLERY}-thumbnail`;	// class of thumbnails
+		const _image = `.simple-gallery .image`;			// class of images
+		const _thumbnail = `.simple-gallery .thumbnail`;	// class of thumbnails
 
 		const _newImageClass = `${_image}-${newIndex}`; 		// Compute new index of .image-
 		const _newThumbnailClass = `${_thumbnail}-${newIndex}`;	// Compute new index of .thumbnail-

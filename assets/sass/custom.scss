@@ -1,0 +1,43 @@
+/**
+ * === POSITION OF THE GALLERY ===
+ */
+ .positionOfGallery {
+	margin-top: 2em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/**
+ * === SIZE OF THE GALLERY ===
+ * 
+ * For full screen mode ==> width: 98%; height: 95%;
+ * Sub elements of the gallery resize automatically.
+ */
+.sizeOfGallery {
+	@media screen and (max-width: 799px) {
+		width: 90%;
+		height: 50%;
+	}
+	@media screen and (min-width: 800px) and (max-width: 1200px) {
+		width: 90%;
+		height: 50%;
+	}
+	@media screen and (min-width: 1201px) and (max-width: 2000px) {
+		width: 90%;
+		height: 50%;
+	}
+	@media screen and (min-width: 2001px) {
+		width: 90%;
+		height: 50%;
+	}
+}
+
+/**
+ * === Decorations of the gallery ===
+ * 
+ * Change them according to the design of your web site
+ */
+.decorationOfGallery {
+	background-color: #0000001f;
+	border-radius: 20px;
+}
