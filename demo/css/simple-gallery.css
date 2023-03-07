@@ -253,3 +253,7 @@ body {
 	background-color: black;
 	background-image: url("");
 }
+
+.hide {
+	display: none;
+}
