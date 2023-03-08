@@ -5,25 +5,28 @@
  * All rights reserved.
  **/
 
-const GALLERY = 'simple-gallery';		// the class of the main section of the gallery
-const IMAGES = `.${GALLERY} > img`;		// all the images of the gallery
-const THUMBNAILS = `simple-gallery .thumbnails `;	// the class of thumbnails section
-const TITLE = `gallery-title`;		// the class of title section
-const ARROWS = `${GALLERY}-arrows`;		// the class of arrows section
+const GALLERY = '.simple-gallery';		// the class of the main section of the gallery
+const IMAGES = `${GALLERY} > img`;		// all the images of the gallery
+const TITLE = `${GALLERY} .title`;		// the class of title section
+const BOARD = `${GALLERY} .board`;
+const IMAGE = `${BOARD} .image`;
+const NAV = `${GALLERY} .nav`;
+const THUMBNAIL_SECTION = `${NAV} .thumbnails`;	// the class of thumbnails section
+const THUMBNAIL_IMAGES = `${THUMBNAIL_SECTION} .thumbnail`;
+const ARROWS = `${NAV} .arrows`;		// the class of arrows section
 
-var CURRENT_IMAGE_NUMBER = 0;		// the number of the current image displayed on the screen
+var CURRENT_IMAGE_NUMBER = -1;		// the number of the current image displayed on the screen
 var NB_IMAGES = 0;		// the total number of images
+var SIZE_OF_THUMBNAIL = 0;
 var IS_FULL_SCREEN_MODE = false;	// save whether the image is displayed in full screen or not
 
 $(document).ready(function () {
 
 	setupGallerySections();
 
-	setupImages();
-
 	setupKeyboardBinding();
 
-	// Setup display arrows following mouse moves
+	// Setup display arrows following mouse moves during fullscreen view
 	let timer;	// The id of the timer
 	$(document).mousemove(function (event) {
 		fadeInArrows(event);
@@ -33,64 +36,58 @@ $(document).ready(function () {
 });
 
 /**
- * Fade in arrows in full screen view 
-*/
-function fadeInArrows(event) {
-
-	if (IS_FULL_SCREEN_MODE) {
-		$(`.${ARROWS}`).fadeIn();
-	}
-}
-
-/**
- * Fade out arrows in full screen view 
-*/
-function fadeOutArrows() {
-	if (IS_FULL_SCREEN_MODE) {
-		$(`.${ARROWS}`).fadeOut();
-	}
-}
-
-/**
  * Init the sections: title, arrows and thumbnails
  */
 function setupGallerySections() {
 
 	setupTitlesSection();
 
-	setupThumbnailsSection();
+	setupImageSection();
 
-	setupArrows();
+	setupNavSection();
+
+	loadImage(0);
+}
+
+/**
+ * Add a section that will contain the title of the current image
+ */
+function setupTitlesSection() {
+
+	$(GALLERY).prepend('<h1 class="title"></h1>');	// Insert h1 section
 }
 
 /**
  * Setup all images in the gallery:
  * 	- init global var NB_IMAGES
- * 	- add class defaultView
- * 	- hide all images except the first
- * 	- add class to all images
  */
-function setupImages() {
+function setupImageSection() {
 
 	NB_IMAGES = $(IMAGES).length;	// Count number of images to display
-
-	$(IMAGES).first().addClass('defaultView').show();	// Add classes defaultView to the first image
-
-	$(IMAGES).each(function () {	// For each images
-		$(this).click(toggleFullScreenView);	// Call toggleFullScreenView function on click to the main image
-	});
-
-	setupImagesClass();
+	
+	$(TITLE).after('<div class="board"></div>');
 }
 
 /**
  * Configure the section for thumbnails
  */
-function setupThumbnailsSection() {
+function setupNavSection() {
 
-	$(`.${GALLERY}`).append(`<div class="thumbnails"></div>`); // Add a section for thumbnails after the images
+	$(GALLERY).append('<nav class="nav"></nav>');
+	$(NAV).append("<div class='arrows'></div>");
+	$(ARROWS).html(`<img class="left arrow" src="./img/utils/left-arrow.png" onclick="leftArrowClicked()">
+	<img class="right arrow" src="./img/utils/right-arrow.png" onclick="rightArrowClicked()">`);
 
-	setupThumbnailImages();
+	$(NAV).append('<div class="thumbnails"></div>');	// Add a section for thumbnails after the images
+
+	setupThumbnailSection();
+
+	// Compute the mean size of a thumbnail
+	var sizeOfThumbnails = 0;
+	$(THUMBNAIL_IMAGES).each(function() {
+		sizeOfThumbnails += $(this).width();
+	});
+	SIZE_OF_THUMBNAIL = sizeOfThumbnails / NB_IMAGES;
 }
 
 /**
@@ -100,47 +97,21 @@ function setupThumbnailsSection() {
  *  where {number} starts from 0 to the number of images
  * Finally it adds '.cursorPointer' class to all images except the first
  */
-function setupThumbnailImages() {
+function setupThumbnailSection() {
 
 	var index = 0;
 
 	$(IMAGES).each(function () {
-		$(`.${THUMBNAILS}`).append(
-			$(this).clone()
-				.addClass('thumbnail')
-				.addClass(`thumbnail-${index}`)	// Add class .thumbnails-{index}
-				.click({ classIndex: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
-		);
+		$(this)
+			.addClass('thumbnail')
+			.addClass(`thumbnail-${index}`)	// Add class .thumbnails-{index}
+			.click({ classIndex: index }, callChangeCurrentImage) 	// on click to a thumbnails, call function to display the new image
+			.appendTo($(THUMBNAIL_SECTION))
 		index++;
 	});
 
-	$(`.${THUMBNAILS} img`).slice(1).addClass('cursorPointer'); // Add cursor clickable to all thumbnails except first
-	$(`.${THUMBNAILS} img`).first().addClass('shadow'); // Add shadow on first thumbnail
-}
-
-/**
- * Add a section that will contain the title of the current image
- * Setup the title with attribut from the first image
- */
-function setupTitlesSection() {
-
-	const _titleValue = $(IMAGES).first().attr('title');	// Get title of the first image
-
-	$(`.${GALLERY}`).prepend(`<h1 class="${TITLE}">${_titleValue}</h1>`);	// Insert h1 section
-}
-
-/**
- * Add left and right arrows to navigate between the images
- * ! Be sure the section for titles is correctly enabled before !
- */
-function setupArrows() {
-
-	$(`.${GALLERY}`).append(`
-		<nav class="arrows">
-			<img class="left arrow" src="./img/utils/left-arrow.png" onclick="leftArrowClicked()"/>
-			<img class="right arrow" src="./img/utils/right-arrow.png" onclick="rightArrowClicked()"/>
-		</nav>
-	`);	// Insert the arrows
+	$(THUMBNAIL_IMAGES).slice(1).addClass('cursor-pointer'); // Add cursor clickable to all thumbnails except first
+	$(THUMBNAIL_IMAGES).first().addClass('shadow'); // Add shadow on first thumbnail
 }
 
 /**
@@ -168,68 +139,6 @@ function setupKeyboardBinding() {
 }
 
 /**
- * Setup class for each images
- * classes are: .images-{number}
- * {number} starts at 0 and increase to the number of images
- */
-function setupImagesClass() {
-
-	var index = 0;
-
-	$(IMAGES).each(function () {
-		$(this)
-			.addClass('image')
-			.addClass(`image-${index}`); // Add class .image-{index}
-		index++;
-	});
-}
-
-/**
- * Get index number from event parameter and call changeMainImage.
- * This function have to be called from click on thumbnails
- */
-function callChangeCurrentImage(event) {
-	changeCurrentImage(event.data.classIndex);
-}
-
-/**
- * Display next image
- */
-function changeCurrentImage(newIndex) {
-
-	if (CURRENT_IMAGE_NUMBER != newIndex) {
-
-		const _image = `.simple-gallery .image`;			// class of images
-		const _thumbnail = `.simple-gallery .thumbnail`;	// class of thumbnails
-
-		const _newImageClass = `${_image}-${newIndex}`; 		// Compute new index of .image-
-		const _newThumbnailClass = `${_thumbnail}-${newIndex}`;	// Compute new index of .thumbnail-
-
-		const _currentImageClass = `${_image}-${CURRENT_IMAGE_NUMBER}`;		// Compute current index of is .image-
-		const _currentThumbnailClass = `${_thumbnail}-${CURRENT_IMAGE_NUMBER}`;	// Compute current index of is .thumbnail-
-
-		CURRENT_IMAGE_NUMBER = newIndex;	// update currentIndex with new value
-
-		$(_currentImageClass).hide();	// hide previous image
-		$(_newImageClass).show(); 	// display new image
-
-
-		if (IS_FULL_SCREEN_MODE == true) {
-			displayFullScreenView();
-		} else {
-			displayDefaultView();
-		}
-
-		$(`.${THUMBNAILS}`).scrollLeft($(_currentThumbnailClass).width() * CURRENT_IMAGE_NUMBER);	// Update horizontal scroll position of thumbnails 
-
-		$(_currentThumbnailClass).removeClass('shadow').removeClass('cursorDefault').addClass('cursorPointer');	// change skin of current thumbnail
-		$(_newThumbnailClass).addClass('shadow').addClass('cursorDefault').removeClass('cursorPointer'); 		// change skin of new selected thumbnail
-
-		$(`.${TITLE}`).html($(_newImageClass).attr('title')); // Update title
-	}
-}
-
-/**
  * Get index of previous image
  */
 function leftArrowClicked() {
@@ -240,7 +149,7 @@ function leftArrowClicked() {
 		index = NB_IMAGES - 1;
 	}
 
-	changeCurrentImage(index);
+	loadImage(index);
 }
 
 /**
@@ -254,7 +163,51 @@ function rightArrowClicked() {
 		index = 0;
 	}
 
-	changeCurrentImage(index);
+	loadImage(index);
+}
+
+/**
+ * Get index number from event parameter and call changeMainImage.
+ * This function have to be called from click on thumbnails
+ */
+function callChangeCurrentImage(event) {
+	loadImage(event.data.classIndex);
+}
+
+/**
+ * Display next image
+ */
+function loadImage(newIndex) {
+
+	if (CURRENT_IMAGE_NUMBER != newIndex) {
+
+
+		const _newThumbnail = `${THUMBNAIL_IMAGES}-${newIndex}`;	// Compute new index of .thumbnail-
+		const _currentThumbnail = `${THUMBNAIL_IMAGES}-${CURRENT_IMAGE_NUMBER}`;	// Compute current index of is .thumbnail-
+
+		CURRENT_IMAGE_NUMBER = newIndex;	// update currentIndex with new value
+
+		$(BOARD).html(
+			$(_newThumbnail).clone()
+				.removeClass('thumbnail')
+				.removeClass('shadow')
+				.addClass('cursor-pointer')
+				.addClass('image')
+		);
+
+		if (IS_FULL_SCREEN_MODE == true) {
+			displayFullScreenView();
+		} else {
+			displayDefaultView();
+		}
+
+		$(THUMBNAIL_SECTION).scrollLeft(SIZE_OF_THUMBNAIL * CURRENT_IMAGE_NUMBER);	// Update horizontal scroll position of thumbnails 
+
+		$(_currentThumbnail).removeClass('shadow').removeClass('cursor-default').addClass('cursor-pointer');	// change skin of current thumbnail
+		$(_newThumbnail).addClass('shadow').addClass('cursor-default').removeClass('cursor-pointer'); 		// change skin of new selected thumbnail
+
+		$(TITLE).html($(_newThumbnail).attr('title')); // Update title
+	}
 }
 
 /**
@@ -266,9 +219,9 @@ function toggleFullScreenView() {
 		displayFullScreenView();
 
 		$('body').addClass('backgroundBlack'); // change background to black
-		$(`.${GALLERY}-left-arrow`).addClass('simple-gallery-left-arrow-full-screen');
-		$(`.${GALLERY}-right-arrow`).addClass('simple-gallery-right-arrow-full-screen');
-		$(`.${ARROWS}`).fadeOut(1000);
+		$(`${GALLERY}-left-arrow`).addClass('simple-gallery-left-arrow-full-screen');
+		$(`${GALLERY}-right-arrow`).addClass('simple-gallery-right-arrow-full-screen');
+		$(`${ARROWS}`).fadeOut(1000);
 
 		IS_FULL_SCREEN_MODE = true;
 
@@ -276,15 +229,15 @@ function toggleFullScreenView() {
 		displayDefaultView();
 
 		$('body').removeClass('backgroundBlack'); // remove black background
-		$(`.${GALLERY}-left-arrow`).removeClass('simple-gallery-left-arrow-full-screen');
-		$(`.${GALLERY}-right-arrow`).removeClass('simple-gallery-right-arrow-full-screen');
-		$(`.${ARROWS}`).fadeIn();
+		$(`${GALLERY}-left-arrow`).removeClass('simple-gallery-left-arrow-full-screen');
+		$(`${GALLERY}-right-arrow`).removeClass('simple-gallery-right-arrow-full-screen');
+		$(`${ARROWS}`).fadeIn();
 
 		IS_FULL_SCREEN_MODE = false;
 	}
 
-	$(`.${THUMBNAILS}`).toggle();	// hide thumbnails
-	$(`.${TITLE}`).toggle(); 	// hide titles
+	$(`.${THUMBNAIL_SECTION}`).toggle();	// hide thumbnails
+	$(TITLE).toggle(); 	// hide titles
 }
 
 
@@ -293,10 +246,8 @@ function toggleFullScreenView() {
  */
 function displayFullScreenView() {
 
-	const _currentImageClass = `.${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
-
-	$(_currentImageClass).removeClass('defaultView'); // switch CSS of current image from default view to full screen view
-	$(_currentImageClass).addClass('fullScreenView');
+	$(IMAGE).removeClass('defaultView'); // switch CSS of current image from default view to full screen view
+	$(IMAGE).addClass('fullScreenView');
 }
 
 /**
@@ -304,8 +255,25 @@ function displayFullScreenView() {
  */
 function displayDefaultView() {
 
-	const _currentImageClass = `.${GALLERY}-image-${CURRENT_IMAGE_NUMBER}`;
+	$(IMAGE).removeClass('fullScreenView'); // switch CSS of current image from full screen view to full default view
+	$(IMAGE).addClass('defaultView');
+}
 
-	$(_currentImageClass).removeClass('fullScreenView'); // switch CSS of current image from full screen view to full default view
-	$(_currentImageClass).addClass('defaultView');
+/**
+ * Fade in arrows in full screen view 
+*/
+function fadeInArrows(event) {
+
+	if (IS_FULL_SCREEN_MODE) {
+		$(`.${ARROWS}`).fadeIn();
+	}
+}
+
+/**
+ * Fade out arrows in full screen view 
+*/
+function fadeOutArrows() {
+	if (IS_FULL_SCREEN_MODE) {
+		$(`.${ARROWS}`).fadeOut();
+	}
 }
