@@ -1,7 +1,7 @@
-Simple JavaScript Image Gallery - Under development!
+Simple JavaScript Image Gallery 
 ==================================
 
-This is a very simple, lightweight and standalone image gallery developed in JavaScript with JQuery.
+This is a very simple, lightweight and standalone image gallery developed in JavaScript with JQuery and Scss.
 
 # Demonstration
 
@@ -20,9 +20,9 @@ The gallery is programmed to run in "full screen" mode. To reduce the size of th
 * Display images whatever their size
 * Possible to display images in full screen mode
 * Support image's title
-* Very simple and lightweight HTML and CSS code
+* Very simple and lightweight HTML5 and Scss code
 * Thumbnails are generated automatically
-* Run without internet connection and with few dependencies
+* Run with few dependencies and without internet connection
 * Support keyboard interactions
 
 # Clone the repository
@@ -37,25 +37,37 @@ git clone https://github.com/pierrick-marie/simple-js-gallery.git
 
 ```
  -src/
-     |__-css/
-     |     |__ simple-gallery.css   (CSS code of the gallery - copy from public by CI)
-     |__-js/
+     |__ sass/
+     |     |__ body.scss            (Scss code of gallery)
+     |     |__ custom.scss   	      (Scss code of gallery)
+     |     |__ gallery.scss         (Scss code of gallery)
+     |     |__ simple-gallery.scss  (Scss code of gallery)
+     |__ js/
      |     |__ simple-gallery.js    (JS code of the gallery  - copy from public by CI)
-     |__-img/
-           |__ -utils/
-	           |__-left-arrow.png	      (Left arrow of gallery)
-	           |__-right-arrow.png      (Right arrow of gallery)
+     |__ img/
+           |__ utils/
+                 |__ left-arrow.png	      (Left arrow of gallery)
+                 |__ right-arrow.png      (Right arrow of gallery)
+                 |__ background.jpg       (Background for the demonstration) 
+                 |__ logo.png             (The favicon for the example)
+           |__ gallery/
+                 |__ ... (Images to test the gallery)
 
- -public/
-     |__-css/
-     |     |__ simple-gallery.css   (CSS code of the gallery)
-     |__-js/
+ -example/
+     |__ sass/
+     |     |__ simple-gallery.css   (CSS code of the gallery - transpile from *.scss files)
+     |__ js/
      |     |__ simple-gallery.js    (JS code of the gallery)
      |     |__ jquery-3.6.3.min.js  (the dependency)
-     |__-img/
-     |     |__ gallery/ (all images for the gallery demonstration)
-     |     |__ utils/   (all side images for the demonstration)
-     |__-index.html     (example page of the gallery)
+     |__ img/
+           |__ utils/
+                 |__ left-arrow.png	      (Left arrow of gallery)
+                 |__ right-arrow.png      (Right arrow of gallery)
+                 |__ background.jpg       (Background for the demonstration) 
+                 |__ logo.png             (The favicon for the example)
+           |__ gallery/
+                 |__ ... (Images to test the gallery)
+     |__ index.html      (example page of the gallery)
 ```
 
 # Dependencies
@@ -165,30 +177,20 @@ To change the other elements, use the following classes
 
 ### 6. Enjoy your gallery!
 
-# Usage
-
-### Navigate through the images
+#### Navigate through the images
 
 There are three options to navigate through images:
 
-* click on the left ou right arrow
+* click on "left" or "right" arrow
 * click on the thumbnails
-* press key left or right key
+* press "left" or "right" key
 
-### Display image in full screen mode
-
-There are two options to display image in full screen mode:
-
-* click on the image
-* press key f
-
-### Display image in default view mode
+#### Display image in default view mode
 
 There are three options to display image in default view mode:
 
-* click on the image
-* press key f
-* press key escape
+* click on the image or press "f" key to toggle in full screen view
+* press "escape" key to exit full screen view and go back in default view
 
 # Authors and acknowledgment
 
@@ -197,10 +199,6 @@ Developer: Pierrick MARIE contact at pierrickmarie.info
 # License
 
 This project is under *3-Clause BSD License*.
-
-# Project status
-
-The project is still under development.
 
 # Contributing
 
