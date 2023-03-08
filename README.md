@@ -148,9 +148,7 @@ To change position, size or decoration of your gallery, modify the following cla
 .sizeOfGallery {
 	...
 }
-```
 
-```css
  /**
   * === Decorations of the gallery ===
   * 
