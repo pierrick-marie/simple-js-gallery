@@ -73,22 +73,24 @@ git clone https://github.com/pierrick-marie/simple-js-gallery.git
 # Dependencies
 
 The gallery requires JQuery in version 3.6.3: https://code.jquery.com/jquery-3.6.3.min.js
-
-### Screenshot
-
-[![Screenshot](https://github.com/pierrick-marie/simple-js-gallery/raw/main/docs/screenshot.jpg)](https://github.com/pierrick-marie/simple-js-gallery/raw/main/docs/screenshot.jpg)
+The dependency is included in source code.
 
 # Installation
 
-### 1. Setup CSS
+### 1. Setup Scss / CSS
 
-Copy **simple-gallery.css** from **src/css/** to your CSS folder
+You can directly use css file transpiled from the Scss source files.
 
-Import **simple-gallery.css** in your *head* section
+The CSS file is in folder **example/css/**. 
+Copy **simple-gallery.css** in your CSS folder.
+Import **simple-gallery.css** in your *head* section:
 
 ```html
 <link rel="stylesheet" href="./css/simple-gallery.css" />
 ```
+
+You can use Scss source files from **src/sass** folder.
+In that case you have to transpile Scss files into CSS.
 
 ### 2. Setup JavaScript
 
@@ -111,9 +113,9 @@ Copy the following code where you want to place the gallery
 
 ```html
 <!-- Main place for the gallery: titles, images and thumbnails -->
-<section class="simple-js-gallery"> <!-- === USE THAT ID TO SETUP THE GALLERY === -->
+<section class="simple-gallery"> <!-- === USE THAT CLASS TO SETUP THE GALLERY === -->
 
-    <!-- Titles and are generated from title attribute -->
+	<!-- Titles and are generated from title attribute -->
 	<!-- Thumbnails are generated automatically from images -->
 	<!-- === PUT ALL YOUR IMAGES HERE ACCORDING TO THE FOLLOWING EXAMPLES === -->
 	<img src="./img/gallery/0.jpg" title="Lights in a circle"/>
@@ -123,20 +125,18 @@ Copy the following code where you want to place the gallery
 </section>
 ```
 
-Add your images in section *#simple-js-gallery* according to the examples
+Add your images in section *.simple-js-gallery* according to the examples
 
 ### 5. Optional: Customize the gallery
 
-To change position and size of your gallery with CSS open **simple-gallery.css** and modify the following properties
+To change position, size or decoration of your gallery, modify the following classes. Those classes are in **src/sass/custom.scss**.
 
 ```css
 /**
  * === POSITION OF THE GALLERY ===
  */
  .positionOfGallery {
-	position: absolute;
-	top: 20%;
-	left: 20%;
+	...
 }
 
 /**
@@ -146,12 +146,9 @@ To change position and size of your gallery with CSS open **simple-gallery.css**
  * Sub elements of the gallery resize automatically.
  */
 .sizeOfGallery {
-	width: 58%;
-	height: 55%;
+	...
 }
 ```
-
-You can change the design of the gallery with the following CSS class
 
 ```css
  /**
@@ -159,21 +156,17 @@ You can change the design of the gallery with the following CSS class
   * 
   * Change them according to the design of your web site
   */
-.decorationGallery {
-	background-color: #0000001f;
-	border-radius: 20px;
+.decorationOfGallery {
+	...
 }
 ```
 
-To change the other elements, use the following classes
+To change the other elements, use the following classes in **src/sass/gallery.scss**
 
 * main image in default view -> *.defaultView*
 * main image in full screen view -> *.fullScreenView*
-* thumbnails area -> *.simple-js-gallery-thumbnails*
-* thumbnails images -> *.simple-js-gallery-thumbnails img*
-* arrows -> *.simple-js-gallery-arrows*
-* left arrow -> *.simple-js-gallery-left-arrow*
-* right arrow -> *.simple-js-gallery-right-arrow*
+* thumbnails area -> *.nav .thumbnails*
+* arrows -> *.arrows*
 
 ### 6. Enjoy your gallery!
 
