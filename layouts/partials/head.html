@@ -9,6 +9,6 @@
 
 	{{ $sass := resources.Get "./sass/simple-gallery.scss" }}
 	{{ $style := $sass | resources.ToCSS }}
-	<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+	<link rel="stylesheet" type="text/css" href=".{{ $style.RelPermalink }}">
 
 </head>
