@@ -1,16 +1,19 @@
-body, html {
-	margin: 0;
-	padding: 0;
-}
-
-body {
+.background-image {
 	background-image: url("../img/utils/background.jpg");
-	background-color: #ffffff;
+	background-color: black;
 	background-size: 100% 100%;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
 
+.background-black {	/* Background in black for full screen view */
+	background-image: none;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
 }
 
 .hide {

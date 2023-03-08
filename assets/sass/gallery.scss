@@ -26,27 +26,6 @@
 	cursor: pointer;
 }
 
-/**
- * Display current image in full screen 
- * ==> remove .defaultView before !
- */
-.fullScreenView {
-	position: fixed;
-	top: 0;
-	left: 50%;
-	transform: translate(-50%, 0);
-
-	width: auto;
-	height: 100%;
-
-	max-width: 100vw;
-	max-height: 100%;
-
-	box-shadow: unset;
-	border-width: 0;
-	border-radius: 0;
-}
-
 /** 
  * gallery 
  */
@@ -82,7 +61,7 @@
 			height: 25vh;
 		}
 		@media screen and (orientation:landscape) { 
-			height: 40vh;
+			height: 46vh;
 		}
 
 		margin-left: auto;
@@ -106,6 +85,36 @@
 
 			margin-left: auto;
 			margin-right: auto;
+		}
+
+		.fullScreenView {
+			z-index: 1;
+
+			position: fixed;
+			left: 50%;
+			transform: translate(-50%, 0);
+			
+			@media screen and (orientation:portrait) { 
+				width: 100%;
+				height: auto;
+				top: 50%;
+				transform: translate(0, -50%);
+				left: 0;
+			}
+			@media screen and (orientation:landscape) { 
+				width: auto;
+				height: 100%;
+				top: 0;
+				left: 50%;
+				transform: translate(-50%, 0);
+			}
+		
+			max-width: 100vw;
+			max-height: 100%;
+		
+			box-shadow: unset;
+			border-width: 0;
+			border-radius: 0;
 		}
 	}
 
@@ -194,38 +203,33 @@
 			.right {
 				right: 1%;
 			}
+
 		}
+
+		.full-screen {
+			
+			@mixin default {
+				width: 10%;
+				position: fixed;
+				z-index: 5;
+			}
+
+			.left {	
+				@include default;
+
+				left: 1%;
+				top: 50%;
+				transform: translate(0, -50%);
+			}
+		
+			.right {
+				@include default;
+
+				right: 1%;
+				top: 50%;
+				transform: translate(0, -50%);
+			}
+		}
+		
 	}
-
-
-
-	// .full-screen {
-
-	// 	.arrows {
-
-	// 		/**
-	// 		 * left arrow in full sceen view
-	// 		 */
-	// 		.left {	
-	// 			position: fixed;
-
-	// 			left: 5em;
-	// 			top: 40%;
-	// 		}
-
-	// 		/**
-	// 		 * right arrow in full sceen view
-	// 		 */
-	// 		.right {	
-	// 			position: fixed;
-
-	// 			right: 5em;
-	// 			top: 40%;
-	// 		}
-
-	// 		.backgroundBlack {	/* Background in black for full screen view */
-	// 			background-color: black;
-	// 		}
-	// 	}
-	// }
 }

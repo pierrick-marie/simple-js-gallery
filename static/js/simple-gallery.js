@@ -29,9 +29,9 @@ $(document).ready(function () {
 	// Setup display arrows following mouse moves during fullscreen view
 	let timer;	// The id of the timer
 	$(document).mousemove(function (event) {
-		fadeInArrows(event);
+		showArrows();
 		clearTimeout(timer); // reset timer
-		timer = setTimeout(fadeOutArrows, 2 * 1000) // fade out arrows after 2 seconds
+		timer = setTimeout(hideArrows, 2 * 1000) // fade out arrows after 2 seconds
 	});
 });
 
@@ -193,6 +193,7 @@ function loadImage(newIndex) {
 				.removeClass('shadow')
 				.addClass('cursor-pointer')
 				.addClass('image')
+				.click(toggleFullScreenView)
 		);
 
 		if (IS_FULL_SCREEN_MODE == true) {
@@ -218,25 +219,23 @@ function toggleFullScreenView() {
 	if (IS_FULL_SCREEN_MODE == false) { // display image in full screen mode
 		displayFullScreenView();
 
-		$('body').addClass('backgroundBlack'); // change background to black
-		$(`${GALLERY}-left-arrow`).addClass('simple-gallery-left-arrow-full-screen');
-		$(`${GALLERY}-right-arrow`).addClass('simple-gallery-right-arrow-full-screen');
-		$(`${ARROWS}`).fadeOut(1000);
+		$('body').addClass('background-black'); // change background to black
+		$(ARROWS).hide();
+		$(ARROWS).addClass('full-screen');
 
 		IS_FULL_SCREEN_MODE = true;
 
 	} else { // display image in default mode
 		displayDefaultView();
 
-		$('body').removeClass('backgroundBlack'); // remove black background
-		$(`${GALLERY}-left-arrow`).removeClass('simple-gallery-left-arrow-full-screen');
-		$(`${GALLERY}-right-arrow`).removeClass('simple-gallery-right-arrow-full-screen');
-		$(`${ARROWS}`).fadeIn();
+		$('body').removeClass('background-black'); // remove black background
+		$(ARROWS).show();
+		$(ARROWS).removeClass('full-screen');
 
 		IS_FULL_SCREEN_MODE = false;
 	}
 
-	$(`.${THUMBNAIL_SECTION}`).toggle();	// hide thumbnails
+	$(THUMBNAIL_SECTION).toggle();	// hide thumbnails
 	$(TITLE).toggle(); 	// hide titles
 }
 
@@ -262,18 +261,18 @@ function displayDefaultView() {
 /**
  * Fade in arrows in full screen view 
 */
-function fadeInArrows(event) {
+function showArrows() {
 
 	if (IS_FULL_SCREEN_MODE) {
-		$(`.${ARROWS}`).fadeIn();
+		$(ARROWS).show();
 	}
 }
 
 /**
  * Fade out arrows in full screen view 
 */
-function fadeOutArrows() {
+function hideArrows() {
 	if (IS_FULL_SCREEN_MODE) {
-		$(`.${ARROWS}`).fadeOut();
+		$(ARROWS).hide();
 	}
 }
